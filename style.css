@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-align: center;
+  font-family: Times_New_Roman;
+}
+
+.skip { 
+  font-size: 0; 
+}
+
+.link {
+  background: none;
+  display:block;  
+  text-decoration: none;
+}
+
+#main-heading {
+  text-align: center;
+  font-weight: bold;
+}
+
+header {
+  width: 100%;
+  height: fit-content;
+  background: #F433FF;
+  color: #3DFF33;
+}
+
+.infobox {
+  padding: 10px;
+  margin: 20px auto;
+  width: 70%;
+  height: auto;
+  border: none;
+  animation: changeColor 5s ease-in-out 0.7s infinite alternate both;
+}
+
+@keyframes changeColor {
+  0% {
+    background: #D462FF;
+    color: #8BFF61;
+  }
+  25% {
+    background: #FF6347;
+    color: #47E3FF;
+  }
+  50% {
+    background: #12AD2B;
+    color: #0909FF;
+  }
+  75% {
+    background: #0909FF;
+    color: #FFFF0A;
+  }
+  100% {
+    background: black;
+    color: snow;
+  }
+}
+
+.menuBtn {
+  background: lime;
+  width: 20px;
+  height: 20px;
+}
+
+.drawer {
+  display: none;
+  padding: 10px;
+  background: #5FC135;
+  width: 60%;
+  height: 70%;
+  border: 1px solid red;
+  border-radius: 10px;
+}
+
+.menuLinks {
+  background: #9734C2;
+  color: snow;
+  text-decoration: none;
+  margin: 10px auto;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: lime;
+}
+
+nav a {
+  background: red;
+  color: white;
+  margin: 1px;
+  text-decoration: none;
+  width: 25%;
+  text-align: center;
+  padding: 8px auto;
+  border: none;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  position: apslute;
+  bottom: 0;
+}
+a{
+background:orange;  color:blue; padding:8px; 
+}
+main{
+padding:14px; font-size:14px;
+}
+
+/* tools page */
+.toolsLink{ background:rgb(242, 139, 255); color:black; font-size:1.5em;  display:block;   text-decoration:none;   border:1px solid black; height:45px; padding:4px;  }
+ul{
+list-style-type:disc;  
+}

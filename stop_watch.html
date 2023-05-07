@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Stopwatch</title>
+    <style>
+        body {background-color: skyblue;}
+        #timer {font-size: 7em; margin: 50px 0; color: #333;}
+        button {padding: 15px 30px; margin: 0 20px; font-size: 1.5em; border-radius: 10px; border: none; cursor: pointer; background-color: #4CAF50; color: white;}
+        button:hover {background-color: #3e8e41;}
+        button:active {background-color: #3e8e41; box-shadow: 0 5px #666; transform: translateY(4px);}
+        button:focus {outline: none; box-shadow: 0 0 0 2px #3e8e41;}
+    </style>
+</head>
+<body>
+   , <h1>Stopwatch</h1>
+    <div id="timer">00:00</div>
+    <div>
+        <button id="startStop">Start</button>
+        <button id="reset">Reset</button>
+    </div>
+    <audio id="beep" src="https://www.myinstants.com/media/sounds/beep_afknTK7.mp3"></audio>
+
+    <script>
+        let intervalId, isRunning, minutes=0, seconds=0;
+
+        function updateTimer() {
+            document.getElementById("timer").innerHTML = `${("0" + minutes).slice(-2)}:${("0" + seconds).slice(-2)}`;
+        }
+
+        function incrementTimer() {
+            let audio = document.getElementById("beep");
+            audio.play();
+            seconds++;
+            if (seconds == 60) {
+                seconds = 0;
+                minutes++;
+            }
+            updateTimer();
+        }
+
+        function startStop() {
+            if (!isRunning) {
+                intervalId = setInterval(incrementTimer, 1000);
+                document.getElementById("startStop").innerHTML = "Stop";
+                isRunning = true;
+            } else {
+                clearInterval(intervalId);
+                document.getElementById("startStop").innerHTML = "Start";
+                isRunning = false;
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(intervalId);
+            isRunning = false;
+            minutes = 0;
+            seconds = 0;
+            updateTimer();
+            document.getElementById("startStop").innerHTML = "Start";
+        }
+
+        document.getElementById("startStop").addEventListener("click", startStop);
+        document.getElementById("reset").addEventListener("click", resetTimer);
+
+        updateTimer();
+    </script>
+</body>
+</html>

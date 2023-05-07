@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://kit.fontawesome.com/a5db627303.js" crossorigin="anonymous"></script>
+   <title>Calculater</title>
+<style>
+
+body{
+	font-family: 'Open Sans',sans-serif;
+	background-color: white;
+}
+.keyboard{ display:grid; grid-template-columns:auto auto auto auto; border:none;}
+.calculator{
+	width:80vw;
+ 	height: 75vh;
+	background-color:#7FFF00; padding:10px; 
+
+	margin: 25px auto;
+
+	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.value{
+background:white; color:black; text-align: left;
+	height: 12vh;
+width:70vw; margin: 5%;
+	padding: 5px;
+	font-size: 1em;
+}
+
+ .num{
+	width: 15vw;
+ 	height: 10vh;
+	margin: 6%;
+font-weight: bold;
+	font-size: 1.5em;
+	background-color: skyblue; text-align:center;
+	cursor: pointer;
+}
+.clear{ font-size:1em; }
+.clear:active, .num:active{
+background:blue; color:snow; width:17vw; height:12vh; 
+}
+
+i{ color:red; margin:14px; font-size:30px; }
+</style>
+</head>
+<body>
+<br>   <div class="main">
+      <form action="#" name="calc" class="calculator">
+         <input type="text" readonly name="textview" class="value">
+<div class="keyboard">         <span role="button" class="num clear" onclick="document.calc.textview.value = ''">Clear</span>
+         <span role="button" class="num operator" onclick="back()"><i title="backspace" class="fa fa-b"></i></span>
+         <span role="button" class="num operator" onclick="document.calc.textview.value += '%'">
+<i title="percent" class="fas fa-percent"></i></span>
+         <span role="button" class="num operator" onclick="document.calc.textview.value += '/'"><i title="divide" class="fas fa-divide"></i></span>
+         <span role="button" class="num" onclick="document.calc.textview.value += '7'">7</span>
+         <span role="button" class="num" onclick="document.calc.textview.value += '8'">8</span>
+         <span role="button" class="num" onclick="document.calc.textview.value += '9'">9</span>
+         <span role="button" class="num operator" onclick="document.calc.textview.value += '*'"><i title="multiply" class="fas fa-multiply"></i></span>
+         <span role="button" class="num" onclick="document.calc.textview.value += '4'">4</span>
+         <span role="button" class="num" onclick="document.calc.textview.value += '5'">5</span>
+         <span role="button" class="num" onclick="document.calc.textview.value += '6'">6</span>
+         <span role="button" class="num operator" onclick="document.calc.textview.value += '-'"><i title="minus" class="fas fa-minus"></i></span>
+         <span role="button" class="num" onclick="document.calc.textview.value += '1'">1</span>
+         <span role="button" class="num" onclick="document.calc.textview.value += '2'">2</span>
+         <span role="button" class="num" onclick="document.calc.textview.value += '3'">3</span>
+         <span role="button" class="num operator" onclick="document.calc.textview.value += '+'"><i title="plus" class="fas fa-plus"></i></span>
+         <span role="button" class="num" onclick="document.calc.textview.value += '0'">0</span>
+         <span role="button" class="num" onclick="document.calc.textview.value += '00'">00</span>
+         <span role="button" class="num operator" onclick="document.calc.textview.value += '.'">.</span>
+         <span role="button" class="num equal" onclick="document.calc.textview.value = eval(document.calc.textview.value)"><i title="equals" class="fas fa-equals"></i></span>
+ </div>     </form>
+   </div>
+
+   <script>
+      function back(){
+         let exp = document.calc.textview.value;
+         document.calc.textview.value = exp.substring(0,exp.length-1)
+      }
+   </script>
+</body>
+</html>

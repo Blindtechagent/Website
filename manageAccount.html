@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Account</title>
+    <style>
+        * {
+            font-family: TimesNewRoman;
+        }
+        body {
+            background: #50C878;
+        }
+        .container {
+            background: skyblue;
+            border-radius: 10%;
+            height: 60vh;
+            width: 95vw;
+            margin: auto;
+            padding:40px auto;
+        }
+        p{
+            font-size: 1em;
+            color: black;
+        }
+        .button {
+            background: #6A0DAD;
+            font-size: 1em;
+            color: snow;
+            margin:40px auto;
+            padding: auto; border:none;
+            display: block; width:80vw;
+        }
+        h1 {
+            font-size: 3em;
+            color: indigo;
+        }
+        #changeBox {
+            display: none;
+            margin: 20px 0;
+            padding: 10px;
+            border: 2px solid #6A0DAD;
+            border-radius: 5px;
+        }
+        #changeBox input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #changeBox button {
+            background: #6A0DAD;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            padding: 8px; width:40vw;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Manage Account</h1>
+        <div class="container" id="logout">
+             <br>
+            <br>
+            <button id="UsersName" class="button" onclick="changeName()"></button>
+            <div id="changeBox">
+                <input type="text" autofocus required placeholder="Enter new name"/>
+                <button class="button" onclick="saveNewName()">Save</button>
+            </div>
+<h2>Delete account</h2>
+ <p>Warning: Deleting your account will permanently erase your stored account information, including your name. This action cannot be undone. Please make sure that you want to delete your account before proceeding.</p>
+            <button class="button" onclick="deleteAccount()">Delete account</button>
+
+       </div>
+    </center>
+    <script>
+        const nameBtn = document.getElementById("UsersName");
+        const storedName = localStorage.getItem('userName');
+        nameBtn.textContent = storedName ? `${storedName}, change your name` : "Change name";
+
+        function changeName() {
+            const changeBox = document.getElementById("changeBox");
+            changeBox.style.display = "block";
+            const input = document.querySelector("#changeBox input");
+            input.focus();
+        }
+
+        function saveNewName() {
+            const input = document.querySelector("#changeBox input");
+            const newName = input.value.trim();
+            if (newName !== "") {
+                localStorage.setItem("userName", newName);
+                nameBtn.textContent = `${newName}, change your name`;
+            }
+            const changeBox = document.getElementById("changeBox");
+            changeBox.style.display = "none";
+            input.value = "";
+        }
+function deleteAccount() {
+    if (confirm("Are you sure you want to delete your account?")) {
+        localStorage.clear();
+        const newWindow = window.open('', '_self');
+        newWindow.close();
+    }
+}
+
+    </script>
+</body>
+</html>

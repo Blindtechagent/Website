@@ -44,7 +44,7 @@
 <body>
     <center>
         <h1>Create account</h1>
-        <form autocomplete="off" action="index.html" id="form">
+        <form autocomplete="off" id="form">
             <label for="name">Enter your Name</label>
             <input type="text" id="name" required>
             <p>Note: This Name will show on home page</p>
@@ -69,7 +69,7 @@
             localStorage.setItem("EMAIL", email);
             localStorage.setItem("PASSWORD", password);
 
-
+            window.replace("index.html");
         }
     </script>
 </body>

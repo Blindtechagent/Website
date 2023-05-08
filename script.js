@@ -58,11 +58,11 @@ const accountBox = document.querySelector('#accountBox');
 if (accountBtn && accountBox) {
   if (localStorage.getItem('userName')) {
     accountBtn.innerHTML = "Manage Account";
-accountBtn.href ="javascript:window.open('manageAccount.html')";
+accountBtn.href ="./manageAccount.html";
     accountBox.style.display = 'none';
   } else {
     accountBtn.innerHTML = "Create Account";
-accountBtn.href ="javascript:window.open('createAccount.html')";
+accountBtn.href ="./createAccount.html";
     accountBox.style.display = 'block';
   }
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>todo-app</title>
+    <title>todo List</title>
     <link rel="stylesheet" href="./stylesheet/style.css" />
 <style>   /* reset style code here */
 * {
@@ -232,8 +232,8 @@ body {
   <body>
     <div class="container">
       <div class="todo-input">
-        <h1>Todo App</h1>
-        <p class="show-input-action"></p>
+        <h1>ToDoList</h1 >
+        <p aria-live="assertive" class="show-input-action"></p>
         <form class="todo-form" autocomplete="off">
           <input type="text" id="input-todo" placeholder="Enter a todo here" />
           <input id="todo-button" type="submit" value="Add" />
@@ -241,7 +241,7 @@ body {
       </div>
       <div class="todo-lists">
         <h2>todo list</h2>
-        <p class="show-result-action">successfully deleted</p>
+        <p aria-live="assertive" class="show-result-action">successfully deleted</p>
 
         <ul class="ul-list">
           <!--

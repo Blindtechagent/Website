@@ -103,25 +103,49 @@ nav a {
   border: none;
 }
 
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 10px;
-  font-size: 14px;
-  width: 100%;
-  position: apslute;
-  bottom: 0;
-}
 a{
 background:orange;  color:blue; padding:8px; 
 }
 main{
 padding:14px; font-size:14px;
 }
-
+.thoughtBox{ background:#691F6E;  }
+.thoughtBox button{  background:gold; color:#080808;   }
 /* tools page */
 .toolsLink{ background:rgb(242, 139, 255); color:black; font-size:1.5em;  display:block;   text-decoration:none;   border:1px solid black; height:45px; padding:4px;  }
 ul{
 list-style-type:disc;  
+}
+.footer {
+  background-color: #333;
+position:apslute; bottom:0;  color: #fff;
+  padding: 30px 0;
+}
+.footer-heading {
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  display: inline;
+  font-size: 20px;
+margin:16px;  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+  transform: translateY(-5px);
+}
+
+.youtube {
+float:left;
+  color: #c4302b;
+}
+
+.telegram {
+float:right;
+  color: #0088cc;
+}
+
+.text-center {
+  margin-top: 20px;
 }

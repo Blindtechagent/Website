@@ -1,153 +1,125 @@
-<!DOCTYPE html> <html lang="en">  <head>     <meta charset="UTF-8">     <meta name="viewport" content="width=device-width, initial-scale=1.0">     <meta http-equiv="X-UA-Compatible" content="ie=edge">    <title>Age calculator by Blind tech agent</title>
-       <style>    body{  
-  font-family: Arial, Helvetica, sans-serif;  
-  background-color: #2782e3;  
-  font-size: 15px;  
-  line-height: 1.5;  
-  padding: 0;  
-  margin: 0;  
- }  
- * {  
-  box-sizing: border-box;  
- }  
- .container{  
-  width:auto;  
-  height:460px;  
-  margin: 100px 16px;  
-  background-color:snow;  
-  border-radius: 25px;  
- }  
- .base{  
-  width: 100%;  
-  margin: 0;  
-  overflow: hidden;  
-  display: block;  
-  float: none;  
- }  
- .block{  
-  width: 135px;  
-  padding: 5px 20px;  
-  margin-left: 20px;  
-  display: inline-block;  
-  float: left;  
- }  
- .base h4{  
-  font-size: 26px;  
-  text-align: center;  
-  font-family: sans-serif;  
-  font-weight: bold;  
-  margin-top: 0px;  
-  box-shadow: 0px 2px #bababa;  
-  background:orange;  
-  font-size: 34px;  
-  color: navy;  
- }  
- .title{  
-  font-size: 20px;  
-  text-align: center;  
-  font-family: sans-serif;  
-  font-weight: normal;  
-  line-height: 0.5;  
-  letter-spacing: 0.5px;  
-  word-spacing: 2.7px;  
-  color:#1073d0;  
- }  
- input[type=number] {  
-  width: 122px;  
-  margin: auto;  
-  outline: none;  
-  min-height: 40px;  
-  border: 2px solid #1073d0;  
-  padding: 8px;  
-  background-color:#BCE954;  
-   border-radius: 2px;  
-   color: #1073d0;  
-   font-size: 17px;  
- }  
- input[type=text]:focus{  
-  background-color: #ffffff;  
-  border: 2px solid orange;  
-  outline: none;  
- }  
- input[type=button]{  
-  width: 155px;  
-  margin:50px 80px;  
-  outline: none;  
-  border: none;  
-  border-radius: 2px;  
-  background-color: #0761b6;  
-  color: #ffffff;  
-  padding: 14px 16px;  
-  text-align: center;  
-  font-size: 16px;  
- }  
- input[type=button]:hover{  
-  background-color: #003669;  
- }  
- #age{  
-  display: block;  
-  margin:30px 10px; 
-  padding: 10px;  
-  
-  overflow: hidden;  
-  font-family: verdana;  
-  font-size: 28px;  
-  font-weight: normal;  
-  line-height: 1.5;  
-  word-spacing: 2.7px;  
-background:lime;  color: navy;  
- }
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Age Calculator</title>
+<style>body {
+  background-color: #e9ecef;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 40px;
+  background-color:#B0E0E6;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+  border-radius: 10px;
+}
+
+h1 {
+  font-size: 3em;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  display: block;
+  margin: 1em 0 .5em;
+  font-weight: bold;
+}
+
+input[type="number"] {
+  display: block;
+  width: 100%;
+  padding: .8em;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  margin-bottom: 1.5em;
+}
+
+button {
+  display: block;
+  margin: 2em auto 0;
+  padding: .8em;
+  font-size: 2em;
+  border: none;
+  border-radius: 3px;
+  width: 80%;
+  background-color: #4d9de0;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4287c9;
+}
+
+#result {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 2em;
+  padding: 1em;
+  background-color: #f9fafb;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
 </style>
 </head>
-<body>  
- <div class="container">  
-  <form>  
-   <div class="base">  
-    <div class="enter">  
-    <h4>Age Calculator</h4>  
-   </div>  
-  <div class="block">  
-   <p class="title">Day</p>  
-   <input type="number" name="date" id="date" placeholder="dd" required="required" minlength="1" maxlength="2" />  
-  </div>  
-  <div class="block">  
-   <p class="title">Month</p>  
-   <input type="number" name="month" id="month" placeholder="mm" required="required" minlength="1" maxlength="2" />  
-  </div>  
-  <div class="block">  
-   <p class="title">Year</p>  
-   <input type="number" name="year" id="year" placeholder="yyyy" required="required" minlength="4" maxlength="4" />  
-  </div>  
-  </div>  
-  <div class="base">  
-   <div class="enter">  
-   <input type="button" name="submit" value="Calculate age" onclick="age()" />  
-   </div>  
-  </div>  
-   <div id="age"></div>  
-  </form>  
- </div>  
-<script>    function age() {  
-  var d1 = document.getElementById('date').value;  
-  var m1 = document.getElementById('month').value;  
-  var y1 = document.getElementById('year').value;  
-  var date = new Date();  
-  var d2 = date.getDate();  
-  var m2 = 1 + date.getMonth();  
-  var y2 = date.getFullYear();  
-  var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];  
-  if(d1 > d2){  
-   d2 = d2 + month[m2 - 1];  
-   m2 = m2 - 1;  
-  }  
-  if(m1 > m2){  
-   m2 = m2 + 12;  
-   y2 = y2 - 1;  
-  }  
-  var d = d2 - d1;  
-  var m = m2 - m1;  
-  var y = y2 - y1;  
-  document.getElementById('age').innerHTML = 'Your Age is '+y+' Years, '+m+' Months, '+d+' Days';  
- }
+<body>
+  <h1>Age Calculator</h1>
+  <form class="container">
+    <p>Please enter your birthdate below to calculate your age:</p>
+    <label for="birth-year">Year (e.g. 1990):</label>
+    <input type="number" id="birth-year" placeholder="Enter your birth year...">
+    <label for="birth-month">Month (e.g. 01 for January):</label>
+    <input type="number" id="birth-month" placeholder="Enter your birth month...">
+    <label for="birth-day">Day (e.g. 15):</label>
+    <input type="number" id="birth-day" placeholder="Enter your birth day...">
+    <button type="button" onclick="calculateAge()">Calculate Age</button>
+    <div id="result"></div>
+  </form>
+<script>
+function calculateAge() {
+  const birthYear = parseInt(document.getElementById("birth-year").value);
+  const birthMonth = parseInt(document.getElementById("birth-month").value);
+  const birthDay = parseInt(document.getElementById("birth-day").value);
+
+  if (isNaN(birthYear) || birthYear < 1900 || birthYear > new Date().getFullYear()) {
+    alert("Please enter a valid birth year.");
+    return;
+  }
+
+  if (isNaN(birthMonth) || birthMonth < 1 || birthMonth > 12) {
+    alert("Please enter a valid birth month.");
+    return;
+  }
+
+  if (isNaN(birthDay) || birthDay < 1 || birthDay > 31) {
+    alert("Please enter a valid birth day.");
+    return;
+  }
+
+  const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
+  const now = new Date();
+  const ageInMs = now - birthDate;
+  const ageInYears = Math.floor(ageInMs / (365.25 * 24 * 60 * 60 * 1000));
+  const ageInMonths = Math.floor((ageInMs / (30 * 24 * 60 * 60 * 1000)) % 12);
+  const ageInDays = Math.floor((ageInMs / (24 * 60 * 60 * 1000)) % 30);
+
+  document.getElementById("result").innerHTML = `Your age is ${ageInYears} years, ${ageInMonths} months, and ${ageInDays} days.`;
+}
+
 </script>
- </body>
+</body>
+</html>

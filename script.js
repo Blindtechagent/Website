@@ -66,3 +66,25 @@ accountBtn.href ="./createAccount.html";
     accountBox.style.display = 'block';
   }
 }
+
+// Use the type.fit API to get a random quote
+      fetch('https://type.fit/api/quotes')
+        .then(response => response.json())
+        .then(data => {
+          const index = Math.floor(Math.random() * data.length);
+          const thought = data[index].text;
+          document.getElementById('thought').innerHTML = thought;
+        })
+        .catch(err => console.log(err));
+        
+      // Use the Google Translate API to translate the thought to Hindi
+      function translateToHindi() {
+        const thought = document.getElementById('thought').innerHTML;
+        fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=${thought}`)
+          .then(response => response.json())
+          .then(data => {
+            const translated = data[0][0][0];
+            document.getElementById('thought').innerHTML = translated;
+          })
+          .catch(err => console.log(err));
+      }

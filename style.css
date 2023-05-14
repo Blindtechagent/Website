@@ -109,7 +109,7 @@ background:orange;  color:blue; padding:8px;
 main{
 padding:14px; font-size:14px;
 }
-.thoughtBox{ background:#691F6E;  }
+.thoughtBox{ background:#691F6E; padding:8px; color:silver;  }
 .thoughtBox button{  background:gold; color:#080808;   }
 /* tools page */
 .toolsLink{ background:rgb(242, 139, 255); color:black; font-size:1.5em;  display:block;   text-decoration:none;   border:1px solid black; height:45px; padding:4px;  }

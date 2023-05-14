@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
   <title>Blind tech agent</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/a5db627303.js" crossorigin="anonymous"></script>
@@ -53,7 +52,7 @@
     <a role="tab" href="index.html" target="_self" aria-selected="true" class="tab w3-yellow">HOME</a>
     <a role="tab" href="tools.html" target="_self" aria-selected="false" class="tab">TOOLS </a>
     <a role="tab" href="education.html" target="_self" aria-selected="false" class="tab">EDUCATION</a>
-    <a role="tab" href="articals.html" aria-selected="false" class="tab">ARTICALS</a>
+    <a role="tab" href="articles.html" aria-selected="false" class="tab">ARTICLES</a>
   </nav>
   <main id="main">
     <section>
@@ -86,15 +85,51 @@
     </div>
     <p class="text-center">&copy; 2023 Blind Tech Agent. All Rights Reserved.</p>
 </footer>
-  <script>
+<script>
     $(document).ready(function () {
       $('.menuBtn').click(function () {
         $('.drawer').toggle(700);
       });
     });
   </script>
-  <script src="./script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.min.js"></script>
+<script src="./script.js"></script>
+
+<script>
+      fetch('https://type.fit/api/quotes')
+        .then(response => response.json())
+        .then(data => {
+          const index = Math.floor(Math.random() * data.length);
+          const thought = data[index].text;
+          document.getElementById('thought').innerHTML = thought;
+        })
+        .catch(err => console.log(err));
+        
+      function translateToHindi() {
+        const thought = document.getElementById('thought').innerHTML;
+        fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=${thought}`)
+          .then(response => response.json())
+          .then(data => {
+            const translated = data[0][0][0];
+            document.getElementById('thought').innerHTML = translated;
+          })
+          .catch(err => console.log(err));
+      }
+
+const accountBtn = document.getElementById("accountBtn");
+const accountBox = document.querySelector('#accountBox');
+
+if (accountBtn && accountBox) {
+  if (localStorage.getItem('userName')) {
+    accountBtn.innerHTML = "Manage Account";
+accountBtn.href ="./manageAccount.html";
+    accountBox.style.display = 'none';
+  } else {
+    accountBtn.innerHTML = "Create Account";
+accountBtn.href ="./createAccount.html";
+    accountBox.style.display = 'block';
+  }
+}
+</script>
 </body>
 
 </html>

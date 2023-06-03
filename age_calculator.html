@@ -2,82 +2,96 @@
 <html>
 <head>
   <title>Age Calculator</title>
-<style>body {
-  background-color: #e9ecef;
-  font-family: Arial, sans-serif;
-  font-size: 20px;
-  line-height: 1.6;
-  margin: 0;
-}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/a5db627303.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .container {
+      background-color: #B0E0E6;
+      border-radius: 10px;
+    }
 
-.container {
-  max-width: 600px;
-  margin: 100px auto;
-  padding: 40px;
-  background-color:#B0E0E6;
-  box-shadow: 0 4px 6px rgba(0,0,0,.1);
-  border-radius: 10px;
-}
+    main h1 {
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-h1 {
-  font-size: 3em;
-  text-align: center;
-  margin: 0 0 20px;
-}
+    label {
+      display: block;
+      margin: 1em 0 .5em;
+      font-weight: bold;
+    }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+    input[type="number"] {
+      display: block;
+      width: 100%;
+      font-size: 1.2em;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      margin-bottom: 1.5em;
+    }
 
-label {
-  display: block;
-  margin: 1em 0 .5em;
-  font-weight: bold;
-}
+    button {
+      display: block;
+      margin: 2em auto 0;
+      padding: 16px;
+      font-size: 2em;
+      border: none;
+      border-radius: 3px;
+      width: 80%;
+      background-color: #4d9de0;
+      color: #fff;
+      cursor: pointer;
+    }
 
-input[type="number"] {
-  display: block;
-  width: 100%;
-  padding: .8em;
-  font-size: 1.2em;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-sizing: border-box;
-  margin-bottom: 1.5em;
-}
+    button:hover {
+      background-color: #4287c9;
+    }
 
-button {
-  display: block;
-  margin: 2em auto 0;
-  padding: .8em;
-  font-size: 2em;
-  border: none;
-  border-radius: 3px;
-  width: 80%;
-  background-color: #4d9de0;
-  color: #fff;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #4287c9;
-}
-
-#result {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-top: 2em;
-  padding: 1em;
-  background-color: #f9fafb;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-}
-</style>
+    #result {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-top: 2em;
+      padding: 1em;
+      background-color: #f9fafb;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Age Calculator</h1>
+<header>
+    <a class="skip" href="#main">Skip to main content</a>
+    <a href="./index.html" class="link">Blind Tech agent</a>
+    <img class="menuBtn w3-display-topleft" role="button" src="https://static.thenounproject.com/png/2438551-200.png"
+      title="menu"></img>
+    <div class="drawer w3-sidebar w3-bar-block w3-anemate-left">
+      <a id="accountBtn" role="menuitem" href="./createAccount.html" class="menuLinks w3-bar-item"></a>
+      <a role="menuitem" href="./contact.html" class="menuLinks w3-bar-item">Contact us</a>
+      <a role="menuitem" href="./about.html" class="menuLinks w3-bar-item">About us</a>
+      <a role="menuitem" href="./privacy_policy.html" class="menuLinks w3-bar-item">Privacy policy</a>
+    </div>
+    <img src="https://te.legra.ph/file/1456591743bc08490d50c.jpg" alt="logo" width="100px" height="100px"
+      class="w3-image"></img>
+    <h1 id="main-heading">BLIND TECH AGENT</h1>
+    <hr>
+    <p>"Transforming lives with the power of technology."</p>
+  <nav class="w3-bar">
+    <a role="tab" href="index.html" target="_self" aria-selected="false" class="tab">HOME</a>
+    <a role="tab" href="tools.html" target="_self" aria-selected="true" class="tab w3-yellow">TOOLS </a>
+    <a role="tab" href="education.html" target="_self" aria-selected="false" class="tab">EDUCATION</a>
+    <a role="tab" href="articles.html" target="_self" aria-selected="false" class="tab">ARTICLES</a>
+  </nav>
+  </header>
+    <h1>Age Calculator</h1>
   <form class="container">
     <p>Please enter your birthdate below to calculate your age:</p>
     <label for="birth-year">Year (e.g. 1990):</label>
@@ -89,37 +103,60 @@ button:hover {
     <button type="button" onclick="calculateAge()">Calculate Age</button>
     <div id="result"></div>
   </form>
-<script>
-function calculateAge() {
-  const birthYear = parseInt(document.getElementById("birth-year").value);
-  const birthMonth = parseInt(document.getElementById("birth-month").value);
-  const birthDay = parseInt(document.getElementById("birth-day").value);
+<footer class="footer">
+<h2>Footer</h2>
+    <h3 class="footer-heading">Connect with us</h3>
+    <div class="w3-block">
+        <a href="https://youtube.com/@BlindTechAgent" class="social-icon youtube"><i class="fab fa-youtube" title="Join us on YouTube"></i></a>
+        <a href="https://t.me/Blindtechagent" class="social-icon telegram"><i class="fab fa-telegram-plane" title="Join us on telegram"></i></a>
+    </div>
+    <p class="text-center">&copy; 2023 Blind Tech Agent. All Rights Reserved.</p>
+</footer>
+  <script>
+    function calculateAge() {
+      var birthYear = parseInt(document.getElementById("birth-year").value);
+      var birthMonth = parseInt(document.getElementById("birth-month").value);
+      var birthDay = parseInt(document.getElementById("birth-day").value);
 
-  if (isNaN(birthYear) || birthYear < 1900 || birthYear > new Date().getFullYear()) {
-    alert("Please enter a valid birth year.");
-    return;
-  }
+      if (isNaN(birthYear) || birthYear < 1900 || birthYear > new Date().getFullYear()) {
+        alert("Please enter a valid birth year.");
+        return;
+      }
 
-  if (isNaN(birthMonth) || birthMonth < 1 || birthMonth > 12) {
-    alert("Please enter a valid birth month.");
-    return;
-  }
+      if (isNaN(birthMonth) || birthMonth < 1 || birthMonth > 12)      {
+        alert("Please enter a valid birth month.");
+        return;
+      }
 
-  if (isNaN(birthDay) || birthDay < 1 || birthDay > 31) {
-    alert("Please enter a valid birth day.");
-    return;
-  }
+      if (isNaN(birthDay) || birthDay < 1 || birthDay > 31) {
+        alert("Please enter a valid birth day.");
+        return;
+      }
 
-  const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
-  const now = new Date();
-  const ageInMs = now - birthDate;
-  const ageInYears = Math.floor(ageInMs / (365.25 * 24 * 60 * 60 * 1000));
-  const ageInMonths = Math.floor((ageInMs / (30 * 24 * 60 * 60 * 1000)) % 12);
-  const ageInDays = Math.floor((ageInMs / (24 * 60 * 60 * 1000)) % 30);
+      var currentDate = new Date();
+      var currentDay = currentDate.getDate();
+      var currentMonth = 1 + currentDate.getMonth();
+      var currentYear = currentDate.getFullYear();
 
-  document.getElementById("result").innerHTML = `Your age is ${ageInYears} years, ${ageInMonths} months, and ${ageInDays} days.`;
-}
+      var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-</script>
+      if (birthDay > currentDay) {
+        currentDay += monthDays[currentMonth - 1];
+        currentMonth -= 1;
+      }
+
+      if (birthMonth > currentMonth) {
+        currentMonth += 12;
+        currentYear -= 1;
+      }
+
+      var dayDiff = currentDay - birthDay;
+      var monthDiff = currentMonth - birthMonth;
+      var yearDiff = currentYear - birthYear;
+
+      document.getElementById("result").innerHTML = "Your age is " + yearDiff + " years, " + monthDiff + " months, and " + dayDiff + " days.";
+    }
+  </script>
+<script src="./global.js"></script>
 </body>
 </html>

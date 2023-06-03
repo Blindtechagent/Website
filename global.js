@@ -1,3 +1,11 @@
+$(document).ready(function () {
+      $('.menuBtn').click(function () {
+        $('.drawer').toggle(500);
+      });
+    });
+  
+
+
 
 const accountBtn = document.getElementById("accountBtn");
 if (accountBtn) {

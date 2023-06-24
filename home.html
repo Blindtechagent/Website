@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <style>
+    * {
+      font-family: TimesNewRoman;
+    }
+
+    body {
+      background: #50C878;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: indigo;
+      text-align: center;
+      margin-top: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="welcome-message"></h1>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+  <script>
+    const firebaseConfig = {
+apiKey: "AIzaSyCMk9JONRfCaIvDUPjFsC7CHGPhy0uZES0",
+authDomain: "blind-tech-agent-e4eb9.firebaseapp.com",
+projectId: "blind-tech-agent-e4eb9",
+storageBucket: "blind-tech-agent-e4eb9.appspot.com",
+messagingSenderId: "32698440215",
+appId: "1:32698440215:web:242af943daa0389e5a9a52",
+measurementId: "G-4BV61CLBDP",
+      databaseURL: "https://blind-tech-agent-e4eb9-default-rtdb.asia-southeast1.firebasedatabase.app"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    // Check if a user is currently logged in
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is logged in
+        const name = user.displayName;
+        const welcomeMessage = document.getElementById('welcome-message');
+        welcomeMessage.textContent = `Welcome, ${name}!`;
+      } else {
+        // User is not logged in, redirect to login page
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -18,45 +18,44 @@
       margin-top: 100px;
     }
 
-    p {
-      font-size: 1.5em;
-      color: black;
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    .button {
+    .content {
+      background: skyblue;
+      border-radius: 10%;
+      padding: 20px;
+    }
+
+    .logout-button {
       background: #6A0DAD;
       font-size: 1.5em;
       color: snow;
-      margin: 20px auto;
       padding: 10px;
       border: none;
-      display: block;
-      width: 45vw;
-      text-decoration: none;
+      width: 150px;
+      margin-top: 20px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-  <h1 id="welcomeMessage"></h1>
+  <div class="container">
+    <div class="content">
+      <h1 id="welcomeMessage"></h1>
+      <p>Welcome to the Home page!</p>
+      <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+  </div>
 
-  <p>Thank you for signing in to our website. You can now access the following features:</p>
-
-  <ul>
-    <li>View your profile</li>
-    <li>Manage your settings</li>
-    <li>Interact with other users</li>
-    <li>Explore our content</li>
-  </ul>
-
-  <a href="profile.html" class="button">View Profile</a>
-  <a href="settings.html" class="button">Manage Settings</a>
-  <a href="chat.html" class="button">Start a Chat</a>
-  <a href="content.html" class="button">Explore Content</a>
-
-  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
   <script>
     // Firebase configuration
     const firebaseConfig = {
@@ -67,8 +66,8 @@ apiKey: "AIzaSyDHMNnIoAwyqrNP7AEDkMX2jup8L8shiTk",
     messagingSenderId: "524768280922",
     appId: "1:524768280922:web:8b6e7693d711a38ccab363",
     measurementId: "G-1T12NRRERE",
-      databaseURL: "https://blind-tech-agent-5c78e-default-rtdb.asia-southeast1.firebasedatabase.app"
-    };
+  databaseURL: "https://blind-tech-agent-5c78e-default-rtdb.asia-southeast1.firebasedatabase.app"
+  };
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
@@ -99,6 +98,15 @@ apiKey: "AIzaSyDHMNnIoAwyqrNP7AEDkMX2jup8L8shiTk",
         window.location.replace('login.html');
       }
     });
+
+    // Logout function
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        window.location.replace('login.html');
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
   </script>
 </body>
 

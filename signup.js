@@ -1,12 +1,13 @@
+// Firebase configuration
 const firebaseConfig = {
-apiKey: "AIzaSyCMk9JONRfCaIvDUPjFsC7CHGPhy0uZES0",
-authDomain: "blind-tech-agent-e4eb9.firebaseapp.com",
-  databaseURL: "https://blind-tech-agent-e4eb9-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "blind-tech-agent-e4eb9",
-storageBucket: "blind-tech-agent-e4eb9.appspot.com",
-messagingSenderId: "32698440215",
-appId: "1:32698440215:web:242af943daa0389e5a9a52",
-measurementId: "G-4BV61CLBDP"
+apiKey: "AIzaSyDHMNnIoAwyqrNP7AEDkMX2jup8L8shiTk",
+    authDomain: "blind-tech-agent-5c78e.firebaseapp.com",
+    projectId: "blind-tech-agent-5c78e",
+    storageBucket: "blind-tech-agent-5c78e.appspot.com",
+    messagingSenderId: "524768280922",
+    appId: "1:524768280922:web:8b6e7693d711a38ccab363",
+    measurementId: "G-1T12NRRERE",
+  databaseURL: "https://blind-tech-agent-5c78e-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
 // Initialize Firebase
@@ -36,7 +37,7 @@ form.addEventListener('submit', (e) => {
       
       const message = `Account created successfully. Welcome, ${name}! Please log in with your account.`;
       alert(message);
-      window.location.replace('home.html'); // Redirect to home.html
+      window.location.replace('login.html'); // Redirect to home.html
     })
     .catch((error) => {
       // Handle account creation error

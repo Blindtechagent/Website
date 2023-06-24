@@ -4,58 +4,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>Welcome</title>
   <style>
-    * {
-      font-family: TimesNewRoman;
-    }
-
     body {
       background: #50C878;
+      font-family: TimesNewRoman;
+      text-align: center;
     }
 
     h1 {
       font-size: 3em;
       color: indigo;
-      text-align: center;
-      margin-top: 200px;
+      margin-top: 100px;
+    }
+
+    p {
+      font-size: 1.5em;
+      color: black;
+    }
+
+    .button {
+      background: #6A0DAD;
+      font-size: 1.5em;
+      color: snow;
+      margin: 20px auto;
+      padding: 10px;
+      border: none;
+      display: block;
+      width: 45vw;
+      text-decoration: none;
     }
   </style>
 </head>
 
 <body>
-  <h1 id="welcome-message"></h1>
+  <h1 id="welcomeMessage"></h1>
 
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+  <p>Thank you for signing in to our website. You can now access the following features:</p>
+
+  <ul>
+    <li>View your profile</li>
+    <li>Manage your settings</li>
+    <li>Interact with other users</li>
+    <li>Explore our content</li>
+  </ul>
+
+  <a href="profile.html" class="button">View Profile</a>
+  <a href="settings.html" class="button">Manage Settings</a>
+  <a href="chat.html" class="button">Start a Chat</a>
+  <a href="content.html" class="button">Explore Content</a>
+
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
   <script>
+    // Firebase configuration
     const firebaseConfig = {
-apiKey: "AIzaSyCMk9JONRfCaIvDUPjFsC7CHGPhy0uZES0",
-authDomain: "blind-tech-agent-e4eb9.firebaseapp.com",
-projectId: "blind-tech-agent-e4eb9",
-storageBucket: "blind-tech-agent-e4eb9.appspot.com",
-messagingSenderId: "32698440215",
-appId: "1:32698440215:web:242af943daa0389e5a9a52",
-measurementId: "G-4BV61CLBDP",
-      databaseURL: "https://blind-tech-agent-e4eb9-default-rtdb.asia-southeast1.firebasedatabase.app"
+apiKey: "AIzaSyDHMNnIoAwyqrNP7AEDkMX2jup8L8shiTk",
+    authDomain: "blind-tech-agent-5c78e.firebaseapp.com",
+    projectId: "blind-tech-agent-5c78e",
+    storageBucket: "blind-tech-agent-5c78e.appspot.com",
+    messagingSenderId: "524768280922",
+    appId: "1:524768280922:web:8b6e7693d711a38ccab363",
+    measurementId: "G-1T12NRRERE",
+      databaseURL: "https://blind-tech-agent-5c78e-default-rtdb.asia-southeast1.firebasedatabase.app"
     };
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const database = firebase.database();
 
-    // Check if a user is currently logged in
-    firebase.auth().onAuthStateChanged(function(user) {
+    const welcomeMessage = document.getElementById('welcomeMessage');
+
+    // Get the currently signed-in user
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        // User is logged in
-        const name = user.displayName;
-        const welcomeMessage = document.getElementById('welcome-message');
-        welcomeMessage.textContent = `Welcome, ${name}!`;
+        // Retrieve the user's name from the Firebase Realtime Database
+        firebase
+          .database()
+          .ref('users/' + user.uid)
+          .once('value')
+          .then((snapshot) => {
+            const userData = snapshot.val();
+            if (userData && userData.name) {
+              const name = userData.name;
+              // Display the welcome message with the user's name
+              welcomeMessage.textContent = `Welcome, ${name}!`;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       } else {
-        // User is not logged in, redirect to login page
-        window.location.href = "login.html";
+        // If no user is signed in, redirect to the login page
+        window.location.replace('login.html');
       }
     });
   </script>

@@ -55,5 +55,8 @@ form.addEventListener('submit', (e) => {
 function saveUserName(userId, name) {
   firebase.database().ref('users/' + userId).set({
     name: name
+  })
+  .catch((error) => {
+    console.log('Error occurred while saving user name:', error);
   });
 }

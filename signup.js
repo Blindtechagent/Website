@@ -1,8 +1,4 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
-
-// Firebase configuration
+'// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDHMNnIoAwyqrNP7AEDkMX2jup8L8shiTk",
   authDomain: "blind-tech-agent-5c78e.firebaseapp.com",

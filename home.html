@@ -73,40 +73,46 @@ apiKey: "AIzaSyDHMNnIoAwyqrNP7AEDkMX2jup8L8shiTk",
 
     const welcomeMessage = document.getElementById('welcomeMessage');
 
-    // Get the currently signed-in user
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        // Retrieve the user's name from the Firebase Realtime Database
-        firebase
-          .database()
-          .ref('users/' + user.uid)
-          .once('value')
-          .then((snapshot) => {
-            const userData = snapshot.val();
-            if (userData && userData.name) {
-              const name = userData.name;
-              // Display the welcome message with the user's name
-              welcomeMessage.textContent = `Welcome, ${name}!`;
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
-        // If no user is signed in, redirect to the login page
-        window.location.replace('login.html');
-      }
-    });
-
-    // Logout function
-    function logout() {
-      firebase.auth().signOut().then(() => {
-        window.location.replace('login.html');
-      }).catch((error) => {
-        console.log(error);
+// Get the currently signed-in user
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // Retrieve the user's name from the Firebase Realtime Database
+    firebase
+      .database()
+      .ref('users/' + user.uid)
+      .once('value')
+      .then((snapshot) => {
+        const userData = snapshot.val();
+        if (userData && userData.name) {
+          const name = userData.name;
+          // Display the welcome message with the user's name
+          welcomeMessage.textContent = `Welcome, ${name}!`;
+        } else {
+          // Handle case when user's name is not found in the database
+          welcomeMessage.textContent = 'Welcome!';
+          console.log("User's name not found in the database.");
+        }
+      })
+      .catch((error) => {
+        // Handle database retrieval error
+        welcomeMessage.textContent = 'Welcome!';
+        console.log("Error occurred while retrieving user's name from the database:", error);
       });
-    }
-  </script>
+  } else {
+    // If no user is signed in, redirect to the login page
+    window.location.replace('login.html');
+  }
+});
+
+// Logout function
+function logout() {
+  firebase.auth().signOut().then(() => {
+    window.location.replace('login.html');
+  }).catch((error) => {
+    console.log('Error occurred during logout:', error);
+  });
+}
+ </script>
 </body>
 
 </html>

@@ -54,7 +54,8 @@
   </div>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
     <script>
       // Firebase configuration
     const firebaseConfig = {
@@ -64,39 +65,45 @@ apiKey: "AIzaSyDHMNnIoAwyqrNP7AEDkMX2jup8L8shiTk",
     storageBucket: "blind-tech-agent-5c78e.appspot.com",
     messagingSenderId: "524768280922",
     appId: "1:524768280922:web:8b6e7693d711a38ccab363",
-    measurementId: "G-1T12NRRERE",
-  databaseURL: "https://blind-tech-agent-5c78e-default-rtdb.asia-southeast1.firebasedatabase.app"
+    measurementId: "G-1T12NRRERE"
   };
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
-    const welcomeMessage = document.getElementById('welcomeMessage');
+const welcomeMessage = document.getElementById('welcomeMessage');
 
 // Get the currently signed-in user
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    // Retrieve the user's name from the Firebase Realtime Database
+    // Retrieve the user's name from Firestore
     firebase
-      .database()
-      .ref('users/' + user.uid)
-      .once('value')
-      .then((snapshot) => {
-        const userData = snapshot.val();
-        if (userData && userData.name) {
-          const name = userData.name;
-          // Display the welcome message with the user's name
-          welcomeMessage.textContent = `Welcome, ${name}!`;
+      .firestore()
+      .collection('users')
+      .doc(user.uid)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const userData = doc.data();
+          if (userData && userData.name) {
+            const name = userData.name;
+            // Display the welcome message with the user's name
+            welcomeMessage.textContent = `Welcome, ${name}!`;
+          } else {
+            // Handle case when user's name is not found in the database
+            welcomeMessage.textContent = 'Welcome!';
+            console.log("User's name not found in the database.");
+          }
         } else {
-          // Handle case when user's name is not found in the database
+          // Handle case when user document does not exist
           welcomeMessage.textContent = 'Welcome!';
-          console.log("User's name not found in the database.");
+          console.log('User document does not exist in the database.');
         }
       })
       .catch((error) => {
         // Handle database retrieval error
         welcomeMessage.textContent = 'Welcome!';
-        console.log("Error occurred while retrieving user's name from the database:", error);
+        console.log("Error occurred while retrieving user's name from Firestore:", error);
       });
   } else {
     // If no user is signed in, redirect to the login page
@@ -112,7 +119,7 @@ function logout() {
     console.log('Error occurred during logout:', error);
   });
 }
- </script>
+</script>
 </body>
 
 </html>

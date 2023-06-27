@@ -1,22 +1,23 @@
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDHMNnIoAwyqrNP7AEDkMX2jup8L8shiTk",
-  authDomain: "blind-tech-agent-5c78e.firebaseapp.com",
-  projectId: "blind-tech-agent-5c78e",
-  storageBucket: "blind-tech-agent-5c78e.appspot.com",
-  messagingSenderId: "524768280922",
-  appId: "1:524768280922:web:8b6e7693d711a38ccab363",
-  measurementId: "G-1T12NRRERE",
-  databaseURL: "https://blind-tech-agent-5c78e-default-rtdb.asia-southeast1.firebasedatabase.app"
-};
+apiKey: "AIzaSyDHMNnIoAwyqrNP7AEDkMX2jup8L8shiTk",
+    authDomain: "blind-tech-agent-5c78e.firebaseapp.com",
+    projectId: "blind-tech-agent-5c78e",
+    storageBucket: "blind-tech-agent-5c78e.appspot.com",
+    messagingSenderId: "524768280922",
+    appId: "1:524768280922:web:8b6e7693d711a38ccab363",
+    measurementId: "G-1T12NRRERE"
+  };
 
-// Initialize Firebase
+  // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 const form = document.getElementById('form');
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
+
+const db = firebase.firestore(); // Initialize Firestore
 
 // Handle form submission
 form.addEventListener('submit', (e) => {
@@ -32,7 +33,7 @@ form.addEventListener('submit', (e) => {
       // Account created successfully
       const user = userCredential.user;
 
-      // Save user's name in Firebase database
+      // Save user's name in Firestore
       saveUserName(user.uid, name);
 
       const message = `Account created successfully. Welcome, ${name}! Please log in with your account.`;
@@ -53,7 +54,7 @@ form.addEventListener('submit', (e) => {
 });
 
 function saveUserName(userId, name) {
-  firebase.database().ref('users/' + userId).set({
+  db.collection('users').doc(userId).set({
     name: name
   })
   .catch((error) => {

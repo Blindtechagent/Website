@@ -1,14 +1,14 @@
 const firebaseConfig = {
   apiKey: "AIzaSyDHMNnIoAwyqrNP7AEDkMX2jup8L8shiTk",
-    authDomain: "blind-tech-agent-5c78e.firebaseapp.com",
-    projectId: "blind-tech-agent-5c78e",
-    storageBucket: "blind-tech-agent-5c78e.appspot.com",
-    messagingSenderId: "524768280922",
-    appId: "1:524768280922:web:8b6e7693d711a38ccab363",
-    measurementId: "G-1T12NRRERE"
-  };
+  authDomain: "blind-tech-agent-5c78e.firebaseapp.com",
+  projectId: "blind-tech-agent-5c78e",
+  storageBucket: "blind-tech-agent-5c78e.appspot.com",
+  messagingSenderId: "524768280922",
+  appId: "1:524768280922:web:8b6e7693d711a38ccab363",
+  measurementId: "G-1T12NRRERE"
+};
 
-  // Initialize Firebase
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 // Login Form
@@ -36,5 +36,26 @@ function loginUser(event) {
         console.error("Login error:", error);
         alert("An error occurred. Please try again.");
       }
+    });
+}
+// Add event listener for "Forgot Password" link
+const forgotPasswordLink = document.getElementById("forgot-password-link");
+forgotPasswordLink.addEventListener('click', handleForgotPassword);
+
+function handleForgotPassword(event) {
+  event.preventDefault();
+
+  const email = document.getElementById("login-email").value;
+
+  // Send password reset email to the user's email address
+  firebase.auth().sendPasswordResetEmail(email)
+    .then(function() {
+      // Password reset email sent successfully
+      alert('Password reset email has been sent. Please check your inbox.');
+    })
+    .catch(function(error) {
+      // Handle password reset email sending error
+      console.error("Password reset email error:", error);
+      alert("An error occurred while sending the password reset email. Please try again.");
     });
 }

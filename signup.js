@@ -13,17 +13,13 @@ apiKey: "AIzaSyDHMNnIoAwyqrNP7AEDkMX2jup8L8shiTk",
 firebase.initializeApp(firebaseConfig);
 
 const form = document.getElementById('form');
-const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
-
-const db = firebase.firestore(); // Initialize Firestore
 
 // Handle form submission
 form.addEventListener('submit', (e) => {
   e.preventDefault(); // Prevent form from submitting normally
 
-  const name = nameInput.value;
   const email = emailInput.value;
   const password = passwordInput.value;
 
@@ -33,12 +29,9 @@ form.addEventListener('submit', (e) => {
       // Account created successfully
       const user = userCredential.user;
 
-      // Save user's name in Firestore
-      saveUserName(user.uid, name);
-
-      const message = `Account created successfully. Welcome, ${name}! Please log in with your account.`;
+      const message = 'Account created successfully. Please log in with your new account.';
       alert(message);
-      window.location.replace('login.html'); // Redirect to home.html
+      window.location.replace('login.html'); // Redirect to login.html
     })
     .catch((error) => {
       // Handle account creation error
@@ -52,12 +45,3 @@ form.addEventListener('submit', (e) => {
       }
     });
 });
-
-function saveUserName(userId, name) {
-  db.collection('users').doc(userId).set({
-    name: name
-  })
-  .catch((error) => {
-    console.log('Error occurred while saving user name:', error);
-  });
-}

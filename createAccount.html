@@ -48,12 +48,6 @@
       font-size: 3em;
       color: indigo;
     }
-
-    .password-hint {
-      color: red;
-      font-size: 1.2em;
-      margin-top: -15px;
-    }
   </style>
 </head>
 
@@ -61,18 +55,23 @@
   <center>
     <h1>Create Account</h1>
     <form autocomplete="off" id="form">
+      <label for="name">Enter your Name</label>
+      <input type="text" id="name" required>
       <label for="email">Enter your Email ID</label>
       <input type="email" id="email" required>
-      <label for="password">Enter your Password (min. 6 characters)</label>
+      <label for="password">Enter your Password</label>
       <input type="password" id="password" required>
-      <span class="password-hint">Password must contain at least 6 characters.</span>
       <button class="button" type="reset">Clear inputs</button>
       <button class="button" type="submit">Create</button>
     </form>
   </center>
 
+  <!-- Include the Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <script src="./firebase.js"></script>
   <script src="./signup.js"></script>
 </body>
 

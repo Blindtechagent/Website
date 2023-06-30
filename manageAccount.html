@@ -17,9 +17,9 @@
             height: 60vh;
             width: 95vw;
             margin: auto;
-            padding:40px auto;
+            padding: 40px auto;
         }
-        p{
+        p {
             font-size: 1em;
             color: black;
         }
@@ -27,9 +27,11 @@
             background: #6A0DAD;
             font-size: 1em;
             color: snow;
-            margin:40px auto;
-            padding: auto; border:none;
-            display: block; width:80vw;
+            margin: 40px auto;
+            padding: auto;
+            border: none;
+            display: block;
+            width: 80vw;
         }
         h1 {
             font-size: 3em;
@@ -54,7 +56,8 @@
             border: none;
             border-radius: 5px;
             font-size: 1em;
-            padding: 8px; width:40vw;
+            padding: 8px;
+            width: 40vw;
             margin-top: 10px;
             cursor: pointer;
         }
@@ -64,50 +67,75 @@
     <center>
         <h1>Manage Account</h1>
         <div class="container" id="logout">
-             <br>
+            <br>
             <br>
             <button id="UsersName" class="button" onclick="changeName()"></button>
             <div id="changeBox">
                 <input type="text" autofocus required placeholder="Enter new name"/>
                 <button class="button" onclick="saveNewName()">Save</button>
             </div>
-<h2>Delete account</h2>
- <p>Warning: Deleting your account will permanently erase your stored account information, including your name. This action cannot be undone. Please make sure that you want to delete your account before proceeding.</p>
-            <button class="button" onclick="deleteAccount()">Delete account</button>
-
-       </div>
+            <h2>Log out</h2>
+            <button class="button" onclick="logOut()">Log out</button>
+        </div>
     </center>
-    <script>
-        const nameBtn = document.getElementById("UsersName");
-        const storedName = localStorage.getItem('userName');
-        nameBtn.textContent = storedName ? `${storedName}, change your name` : "Change name";
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="./firebase.js"></script>
+<script>
+const nameBtn = document.getElementById("UsersName");
+const changeBox = document.getElementById("changeBox");
+const input = document.querySelector("#changeBox input");
 
-        function changeName() {
-            const changeBox = document.getElementById("changeBox");
-            changeBox.style.display = "block";
-            const input = document.querySelector("#changeBox input");
-            input.focus();
-        }
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    const userId = user.uid;
+    firebase.database().ref("users/" + userId + "/name").once("value")
+      .then((snapshot) => {
+        const storedName = snapshot.val() || "User";
+        nameBtn.textContent = `${storedName}, change your name`;
+      })
+      .catch((error) => {
+        console.error("Database read error:", error);
+        alert("An error occurred while retrieving data. Please try again.");
+      });
+  }
+});
 
-        function saveNewName() {
-            const input = document.querySelector("#changeBox input");
-            const newName = input.value.trim();
-            if (newName !== "") {
-                localStorage.setItem("userName", newName);
-                nameBtn.textContent = `${newName}, change your name`;
-            }
-            const changeBox = document.getElementById("changeBox");
-            changeBox.style.display = "none";
-            input.value = "";
-        }
-
-function deleteAccount() {
-    if (confirm("Are you sure you want to delete your account?")) {
-        localStorage.clear();
-        window.location.replace("index.html");
-    }
+function changeName() {
+  changeBox.style.display = "block";
+  input.focus();
 }
 
-    </script>
+function saveNewName() {
+  const newName = input.value.trim();
+  if (newName !== "") {
+    const userId = firebase.auth().currentUser.uid;
+    firebase.database().ref("users/" + userId).update({ name: newName })
+      .then(() => {
+        nameBtn.textContent = `${newName}, change your name`;
+      })
+      .catch((error) => {
+        console.error("Database write error:", error);
+        alert("An error occurred while saving the new name. Please try again.");
+      });
+  }
+  changeBox.style.display = "none";
+  input.value = "";
+}
+
+function logOut() {
+  if (confirm("Are you sure you want to log out?")) {
+    firebase.auth().signOut()
+      .then(() => {
+        window.location.replace("index.html");
+      })
+      .catch((error) => {
+        console.error("Logout error:", error);
+        alert("An error occurred while logging out. Please try again.");
+      });
+  }
+}
+</script>
 </body>
 </html>

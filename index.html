@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Blind tech agent</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/a5db627303.js" crossorigin="anonymous"></script>
 </head>
 
@@ -27,6 +27,7 @@
     <img class="menuBtn w3-display-topleft" role="button" src="https://static.thenounproject.com/png/2438551-200.png"
       title="menu"></img>
     <div class="drawer w3-sidebar w3-bar-block w3-anemate-left">
+      <a id="loginBtn" role="menuitem" href="./login.html" class="menuLinks w3-bar-item">Log in</a>
       <a id="accountBtn" role="menuitem" href="./createAccount.html" class="menuLinks w3-bar-item"></a>
       <a role="menuitem" href="./contact.html" class="menuLinks w3-bar-item">Contact us</a>
       <a role="menuitem" href="./about.html" class="menuLinks w3-bar-item">About us</a>
@@ -52,7 +53,7 @@
     <a role="tab" href="tools.html" target="_self" class="tab">TOOLS </a>
     <a role="tab" href="education.html" target="_self" class="tab">EDUCATION</a>
     <a role="tab" href="articles.html" class="tab">ARTICLES</a>
-  </nav>
+q  </nav>
   </header>
     <main id="main">
     <section>
@@ -84,10 +85,44 @@
         <a href="https://t.me/Blindtechagent" class="social-icon telegram"><i class="fab fa-telegram-plane" title="Join us on telegram"></i></a>
     </div>
     <p class="text-center">&copy; 2023 Blind Tech Agent. All Rights Reserved.</p>
+<div class="w3-hide">
+<a href='http://www.freevisitorcounters.com'>Freevisitorcounters.com</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=fed0960555e18136014c721690f1186c06649132'></script>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1045314/t/3"></script>
+</div>
 </footer>
-
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="./firebase.js"></script>
 <script src="./script.js"></script>
+<script>
+$(document).ready(function () {
+  const accountBtn = document.getElementById("accountBtn");
+  const accountBox = document.querySelector('#accountBox');
+  const loginBtn = document.getElementById("loginBtn");
 
+  if (accountBtn && accountBox && loginBtn) {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        accountBtn.innerHTML = "Manage Account";
+        accountBtn.href = "./manageAccount.html";
+        accountBox.style.display = 'none';
+        loginBtn.style.display = 'none';
+      } else {
+        accountBtn.innerHTML = "Create Account";
+        accountBtn.href = "./createAccount.html";
+        accountBox.style.display = 'block';
+        loginBtn.style.display = 'block';
+        loginBtn.href = "./login.html";
+      }
+    });
+  }
+
+  $('.menuBtn').click(function () {
+    $('.drawer').toggle(500);
+  });
+});
+</script>
 <script>
       fetch('https://type.fit/api/quotes')
         .then(response => response.json())
@@ -108,28 +143,6 @@
           })
           .catch(err => console.log(err));
       }
-</script>
-<script>
-$(document).ready(function () {
-  const accountBtn = document.getElementById("accountBtn");
-  const accountBox = document.querySelector('#accountBox');
-
-  if (accountBtn && accountBox) {
-    if (localStorage.getItem('userName')) {
-      accountBtn.innerHTML = "Manage Account";
-      accountBtn.href = "./manageAccount.html";
-      accountBox.style.display = 'none';
-    } else {
-      accountBtn.innerHTML = "Create Account";
-      accountBtn.href = "./createAccount.html";
-      accountBox.style.display = 'block';
-    }
-  }
-
-  $('.menuBtn').click(function () {
-    $('.drawer').toggle(500);
-  });
-});
 </script>
 </body>
 

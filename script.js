@@ -1,5 +1,3 @@
-const name = localStorage.getItem("userName") || "user";
-
 const timeEl = document.querySelector('.time');
 const dateEl = document.querySelector('.date');
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -27,27 +25,44 @@ function setTime() {
 setTime();
 setInterval(setTime, 1000);
 
-const time = new Date().getHours();
+firebase.auth().onAuthStateChanged(async (user) => {
+  const userId = user ? user.uid : null;
+  const greetEl = document.getElementById("greet");
+  let name = "User";
 
-let greeting;
+  if (userId) {
+    try {
+      const snapshot = await firebase.database().ref("users/" + userId + "/name").once("value");
+      name = snapshot.val() || "User";
+    } catch (error) {
+      console.error("Database read error:", error);
+      alert("An error occurred while retrieving data. Please try again.");
+    }
+  }
 
-if (time < 7) {
-  greeting = `Very Good morning ${name}! <br> We're delighted to see you here so early.`;
-} else if (time < 12) {
-  greeting = `Good morning ${name}! <br> It's a beautiful morning and we're thrilled to have you join us on our website.`;
-} else if (time < 14) {
-  greeting = `Good afternoon ${name}! <br> It's time to have lunch.`;
-} else if (time < 16) {
-  greeting = `Good afternoon ${name}! <br> We're so happy to have you join us on our website.`;
-} else if (time < 20) {
-  greeting = `Good evening ${name}! <br> how are you doing today?`;
-} else if (time < 22) {
-  greeting = `Good night ${name}! <br> Thanks for stopping by at night! We hope you find what you're looking for.`;
-} else {
-  greeting = `Good night ${name}! <br> it's time to sleep, we are so glad to see you at late night.`;
-}
+  const greeting = getGreeting(name);
 
-const greetEl = document.getElementById("greet");
-if (greetEl) {
-  greetEl.innerHTML = greeting;
+  if (greetEl) {
+    greetEl.innerHTML = greeting;
+  }
+});
+
+function getGreeting(name) {
+  const time = new Date().getHours();
+
+  if (time < 7) {
+    return `Very Good morning ${name}! We're delighted to see you here so early.`;
+  } else if (time < 12) {
+    return `Good morning ${name}! It's a beautiful morning and we're thrilled to have you join us on our website.`;
+  } else if (time < 14) {
+    return `Good afternoon ${name}! It's time to have lunch.`;
+  } else if (time < 16) {
+    return `Good afternoon ${name}! We're so happy to have you join us on our website.`;
+  } else if (time < 20) {
+    return `Good evening ${name}! How are you doing today?`;
+  } else if (time < 22) {
+    return `Good night ${name}! Thanks for stopping by at night! We hope you find what you're looking for.`;
+  } else {
+    return `Good night ${name}! It's time to sleep. We are so glad to see you at late night.`;
+  }
 }

@@ -48,6 +48,7 @@
       font-size: 3em;
       color: indigo;
     }
+    .link{ background:lime; color:snow; width:60%; margin:10px auto; padding:8px; display:block; }
   </style>
 </head>
 
@@ -59,9 +60,10 @@
       <input type="email" id="login-email" required>
       <label for="login-password">Password</label>
       <input type="password" id="login-password" required>
-<p><a id="forgot-password-link">Forgot Password?</a></p>
+<p>Forgot Password?</p>
+<a id="forgot-password-link" class="link" role="button">Reset Password</a>
       <button class="button" type="submit">Login</button>
-    <p>Not have an account yet? <a href="signup.html">Sign up</a></p>
+    <p>Not have an account yet? <a class="link" href="createAccount.html">Create Account</a></p>
     </form>
       </center>
 

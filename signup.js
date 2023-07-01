@@ -19,7 +19,7 @@ form.addEventListener('submit', (e) => {
       const userName = document.getElementById("name").value;
 
       // Save the user's name to the database using the email ID as the key
-      firebase.database().ref("users/" + emailId).set({
+      firebase.database().ref("users/" + emailId.replace('.', ',')).set({
         name: userName
       })
       .then(() => {

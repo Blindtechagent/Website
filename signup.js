@@ -1,4 +1,3 @@
-
 const form = document.getElementById('form');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
@@ -15,12 +14,12 @@ form.addEventListener('submit', (e) => {
     .then((userCredential) => {
       // Account created successfully
       const user = userCredential.user;
-      const userId = user.uid; // Get the unique user ID
+      const emailId = user.email; // Get the user's email ID
 
       const userName = document.getElementById("name").value;
 
-      // Save the user's name to the database using the unique user ID as the key
-      firebase.database().ref("users/" + userId).set({
+      // Save the user's name to the database using the email ID as the key
+      firebase.database().ref("users/" + emailId.replace('.', ',')).set({
         name: userName
       })
       .then(() => {
@@ -37,10 +36,12 @@ form.addEventListener('submit', (e) => {
     .catch((error) => {
       // Handle account creation error
       if (error.code === 'auth/email-already-in-use') {
-        alert('Account already exists. Please log in to your account.');
+        alert('An account already exists with this email. Please log in to your account.');
         window.location.href = 'login.html'; // Redirect to login.html
       } else if (error.code === 'auth/invalid-email') {
         alert('Invalid email format. Please enter a valid email address.');
+      } else if (error.code === 'auth/weak-password') {
+        alert('The password is too weak. Please choose a stronger password.');
       } else {
         alert('An error occurred. Please try again.');
       }

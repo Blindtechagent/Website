@@ -32,7 +32,7 @@ firebase.auth().onAuthStateChanged(async (user) => {
 
   if (emailId) {
     try {
-      const snapshot = await firebase.database().ref("users/" + emailId + "/name").once("value");
+      const snapshot = await firebase.database().ref("users/" + emailId.replace('.', ',') + "/name").once("value");
       name = snapshot.val() || "User";
     } catch (error) {
       console.error("Database read error:", error);

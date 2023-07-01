@@ -26,13 +26,13 @@ setTime();
 setInterval(setTime, 1000);
 
 firebase.auth().onAuthStateChanged(async (user) => {
-  const userId = user ? user.uid : null;
+  const emailId = user ? user.email : null;
   const greetEl = document.getElementById("greet");
   let name = "User";
 
-  if (userId) {
+  if (emailId) {
     try {
-      const snapshot = await firebase.database().ref("users/" + userId + "/name").once("value");
+      const snapshot = await firebase.database().ref("users/" + emailId + "/name").once("value");
       name = snapshot.val() || "User";
     } catch (error) {
       console.error("Database read error:", error);

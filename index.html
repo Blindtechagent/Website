@@ -18,10 +18,17 @@
   <title>Blind tech agent</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/a5db627303.js" crossorigin="anonymous"></script>
+<script src="./preloader.js"></script>
+<style>
+.close{ margin-left:60px; padding:3px 5px; border:none; }</style>
 </head>
 
 <body>
-  <header>
+<div class="preloader">
+    <div class="loader"></div>
+    <p id="loading-text" tabindex="0" autofocus aria-live="assertive">LOADING</p>
+  </div>
+    <header>
     <a class="skip" href="#main">Skip to main content</a>
     <a href="./index.html" class="link">Blind Tech agent</a>
     <img class="menuBtn w3-display-topleft" role="button" src="https://static.thenounproject.com/png/2438551-200.png"
@@ -36,9 +43,11 @@
       class="w3-image"></img>
     <h1 id="main-heading">BLIND TECH AGENT</h1>
 <div id="accountBox" class="w3-tag w3-white w3-padding-16">
+<br>
 <p>have you not created an account yet?</p>
 <br>
 <a href="./createAccount.html">Create account</a>
+<button class="w3-red w3-round close" onclick="document.getElementById('accountBox').style.display = 'none'" aria-label="close">&times;</button>
 </div>
    <hr>
     <p>"Transforming lives with the power of technology."</p>
@@ -64,6 +73,12 @@ q  </nav>
        <p id="thought"></p>
         <button onclick="translateToHindi()" class="w3-btn w3-left w3-round">Translate to Hindi</button>
       </div>
+<br>
+<h2 class="w3-warning">Important announcement</h2>
+<p>We have important information to share with you! To ensure that you stay informed about the latest updates and important announcements, we kindly request you to create an account on our website. By doing so, you will receive timely and relevant information directly to your mail.</p>
+<p>For our existing users, we apologize for the inconvenience caused. However, we have made significant improvements to our account system to enhance your experience. As a result, we kindly ask you to recreate your account to fully benefit from these improvements. We understand that this may require some additional effort, and we sincerely apologize for any inconvenience caused during the account recreation process.</p>
+<p>Creating a new account is a quick and easy process. Simply visit our website and click on the "Create Account" button to get started. Follow the instructions provided, and you'll be all set to receive important updates and stay connected with us.</p>
+<br>
       <p>We are a multipurpose website dedicated to transforming lives with the power of technology. Although our
         website is designed to be accessible for the blind, it is meant for everyone who wants to benefit from the
         latest advancements in technology.</p>

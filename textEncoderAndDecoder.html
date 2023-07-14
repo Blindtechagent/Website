@@ -2,71 +2,44 @@
 <html>
 
 <head>
-  <title>Age Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/a5db627303.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="./loading.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Encoder and Decoder</title>
   <style>
-    .container {
-      background-color: #B0E0E6;
-      border-radius: 10px;
+    main {
+      font-family: Arial, sans-serif;
+      margin: 0 auto;
     }
 
-    main h1 {
-      text-align: center;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    label {
-      display: block;
-      margin: 1em 0 .5em;
-      font-weight: bold;
-    }
-
-    input[type="number"] {
-      display: block;
+    textarea {
       width: 100%;
-      font-size: 1.2em;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      box-sizing: border-box;
-      margin-bottom: 1.5em;
+      height: 100px;
+      margin-bottom: 10px;
     }
 
     button {
-      display: block;
-      margin: 2em auto 0;
-      padding: 16px;
-      font-size: 2em;
+      padding: 10px 20px;
+      background-color: #22A7F0;
+      color: white;
       border: none;
-      border-radius: 3px;
-      width: 80%;
-      background-color: #4d9de0;
-      color: #fff;
       cursor: pointer;
     }
 
-    button:hover {
-      background-color: #4287c9;
+    .result {
+      display: none;
+      margin-top: 10px;
+      border: 1px solid #22A7F0;
+      padding: 10px;
     }
 
-    #result {
-      font-size: 1.5em;
-      font-weight: bold;
-      margin-top: 2em;
-      padding: 1em;
-      background-color: #f9fafb;
-      border: 1px solid #ddd;
-      border-radius: 3px;
+    .result button {
+      padding: 5px 10px;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -103,19 +76,19 @@
     </header>
     <main>
       <div id="heading-box" tabindex="0" role="heading" aria-level="2">
-        <h2>Age Calculator</h2>
+        <h2>Text Encoder and Decoder</h2>
       </div>
-      <form class="container">
-        <p>Please enter your birthdate below to calculate your age:</p>
-        <label for="birth-year">Year (e.g. 1990):</label>
-        <input type="number" id="birth-year" placeholder="Enter your birth year...">
-        <label for="birth-month">Month (e.g. 01 for January):</label>
-        <input type="number" id="birth-month" placeholder="Enter your birth month...">
-        <label for="birth-day">Day (e.g. 15):</label>
-        <input type="number" id="birth-day" placeholder="Enter your birth day...">
-        <button type="button" onclick="calculateAge()">Calculate Age</button>
-        <div id="result"></div>
-      </form>
+      <p>This simple tool allows you to encode and decode text. It can be useful in scenarios such as obscuring
+        sensitive
+        information or transforming data for compatibility with different systems.</p>
+      <textarea id="inputText" placeholder="Enter your text"></textarea>
+      <button onclick="encodeText()">Encode</button>
+      <button onclick="decodeText()">Decode</button>
+      <div class="result" id="result">
+        <h3>Result</h3>
+        <textarea id="outputText" readonly></textarea>
+        <button onclick="copyResult()" id="copyButton">Copy</button>
+      </div>
     </main>
     <footer class="footer">
       <h2>Footer</h2>
@@ -133,52 +106,42 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="./firebase.js"></script>
+  <script src="./global.js"></script>
   <script>
-    function calculateAge() {
-      var birthYear = parseInt(document.getElementById("birth-year").value);
-      var birthMonth = parseInt(document.getElementById("birth-month").value);
-      var birthDay = parseInt(document.getElementById("birth-day").value);
-
-      if (isNaN(birthYear) || birthYear < 1900 || birthYear > new Date().getFullYear()) {
-        alert("Please enter a valid birth year.");
+    function encodeText() {
+      const inputText = document.getElementById("inputText").value;
+      if (inputText.trim() === "") {
+        alert("Please enter text to encode.");
         return;
       }
+      const encodedText = btoa(inputText);
+      document.getElementById("outputText").value = encodedText;
+      document.getElementById("result").style.display = "block";
+    }
 
-      if (isNaN(birthMonth) || birthMonth < 1 || birthMonth > 12) {
-        alert("Please enter a valid birth month.");
+    function decodeText() {
+      const inputText = document.getElementById("inputText").value;
+      if (inputText.trim() === "") {
+        alert("Please enter text to decode.");
         return;
       }
-
-      if (isNaN(birthDay) || birthDay < 1 || birthDay > 31) {
-        alert("Please enter a valid birth day.");
-        return;
+      try {
+        const decodedText = atob(inputText);
+        document.getElementById("outputText").value = decodedText;
+        document.getElementById("result").style.display = "block";
+      } catch (error) {
+        alert("Invalid input.");
       }
+    }
 
-      var currentDate = new Date();
-      var currentDay = currentDate.getDate();
-      var currentMonth = 1 + currentDate.getMonth();
-      var currentYear = currentDate.getFullYear();
-
-      var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-      if (birthDay > currentDay) {
-        currentDay += monthDays[currentMonth - 1];
-        currentMonth -= 1;
-      }
-
-      if (birthMonth > currentMonth) {
-        currentMonth += 12;
-        currentYear -= 1;
-      }
-
-      var dayDiff = currentDay - birthDay;
-      var monthDiff = currentMonth - birthMonth;
-      var yearDiff = currentYear - birthYear;
-
-      document.getElementById("result").innerHTML = "Your age is " + yearDiff + " years, " + monthDiff + " months, and " + dayDiff + " days.";
+    function copyResult() {
+      const copyText = document.getElementById("outputText");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      alert("Copied to clipboard!");
     }
   </script>
-  <script src="./global.js"></script>
 </body>
 
 </html>

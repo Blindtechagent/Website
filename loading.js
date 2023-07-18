@@ -4,7 +4,7 @@ window.addEventListener('load', function() {
         var body = document.querySelector('#body');
         preloader.remove(); // Remove the preloader element from the document
 body.style.display = "block";
-      }, 3000);
+      }, 2500);
 
       setTimeout(function() {
         var loadingText = document.getElementById('loading-text');

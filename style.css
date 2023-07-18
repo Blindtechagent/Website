@@ -1,4 +1,4 @@
-#body{ display:none; }
+
 .preloader {
       position: fixed;
       top: 0;
@@ -40,7 +40,9 @@
       color: #fff;
       margin-top: 20px;
     }
-
+#body{
+     display: none;
+ }
   * {
   box-sizing: border-box;
   margin: 0;

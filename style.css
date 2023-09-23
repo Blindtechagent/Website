@@ -126,7 +126,7 @@ header {
   background: #9734C2;
   color: snow;
   text-decoration: none;
-  margin: 10px auto;
+  margin: 10px auto; display:block;
 }
 
 nav {

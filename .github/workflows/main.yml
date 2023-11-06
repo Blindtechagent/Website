@@ -1,0 +1,31 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Set API key as an environment variable
+        run: echo "API_KEY=${{ secrets.BTA_openai_key }}" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build and deploy
+        run: |
+          # You can access the API key in your JavaScript code
+          echo $API_KEY
+          # Run your build or deployment process using the API key

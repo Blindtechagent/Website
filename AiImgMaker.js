@@ -19,7 +19,7 @@ const updateImageCard = (imgDataArray) => {
 
     // When the image is loaded, remove the loading class and set download attributes
     imgElement.onload = () => {
-      imgCard.classList remove("loading");
+      imgCard.classList.remove("loading"); // Fixed the typo
       downloadBtn.setAttribute("href", aiGeneratedImage);
       downloadBtn.setAttribute("download", `${new Date().getTime()}.jpg`);
     };
@@ -74,7 +74,7 @@ const handleImageGeneration = (e) => {
   const imgCardMarkup = Array.from({ length: userImgQuantity }, () =>
     `<div class="img-card loading">
       <img src="images/loader.svg" alt="AI generated image">
-      <a class="download-btn" href="#">
+      <a class "download-btn" href="#">
         <img src="images/download.svg" alt="download icon">
       </a>
     </div>`

@@ -25,8 +25,7 @@ const updateImageCard = (imgDataArray) => {
 const generateAiImages = async (userPrompt, userImgQuantity) => {
   try {
     // Access the API key from the environment variable
-    const apiKey = process.env.API_KEY;
-
+const apiKey = BTA_openai_key;
     // Send a request to the OpenAI API to generate images based on user inputs
     const response = await fetch("https://api.openai.com/v1/images/generations", {
       method: "POST",

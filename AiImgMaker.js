@@ -3,6 +3,10 @@ const generateBtn = generateForm.querySelector(".generate-btn");
 const imageGallery = document.querySelector(".image-gallery");
 let isImageGenerating = false;
 
+// Import your API key from secrets.js
+const secrets = require('./secrets');
+const apiKey = secrets.openaiApiKey;
+
 const updateImageCard = (imgDataArray) => {
   imgDataArray.forEach((imgObject, index) => {
     const imgCard = imageGallery.querySelectorAll(".img-card")[index];
@@ -15,7 +19,7 @@ const updateImageCard = (imgDataArray) => {
 
     // When the image is loaded, remove the loading class and set download attributes
     imgElement.onload = () => {
-      imgCard.classList.remove("loading");
+      imgCard.classList remove("loading");
       downloadBtn.setAttribute("href", aiGeneratedImage);
       downloadBtn.setAttribute("download", `${new Date().getTime()}.jpg`);
     };
@@ -24,21 +28,18 @@ const updateImageCard = (imgDataArray) => {
 
 const generateAiImages = async (userPrompt, userImgQuantity) => {
   try {
-    // Access the API key from the environment variable
-const apiKey = process.env.BTA_openai_key;
-
     // Send a request to the OpenAI API to generate images based on user inputs
     const response = await fetch("https://api.openai.com/v1/images/generations", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`, // Use the API key here
+        'Authorization': `Bearer ${apiKey}`, // Use your API key from secrets.js
       },
       body: JSON.stringify({
         prompt: userPrompt,
         n: userImgQuantity,
         size: "512x512",
-        response_format: "b64_json",
+        response_format: "b64_json"
       }),
     });
 

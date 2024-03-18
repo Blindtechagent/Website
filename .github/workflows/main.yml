@@ -1,2 +1,0 @@
-- name: Set API key as an environment variable
-  run: echo "OPENAI_API_KEY=${{ secrets.BTA_openai_key }}" >> $GITHUB_ENV

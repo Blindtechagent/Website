@@ -81,6 +81,7 @@ function generateAndDisplayPassword() {
 // Function to save password to Firebase
 function savePassword() {
   const user = firebase.auth().currentUser;
+  const emailId = user.email;
   if (!user) {
     announce('Please sign in to save passwords.');
     return;
@@ -100,7 +101,7 @@ function savePassword() {
   
   try {
     const passwordObj = { title, password };
-    firebase.database().ref('users/' + user.uid + '/savedPasswords').push(passwordObj);
+    firebase.database().ref("users/" + emailId.replace('.', ',') + "/savedPasswords").push(passwordObj);
     announce('Password saved successfully!');
   } catch (error) {
     announce('Failed to save password. Please try again.');
@@ -110,13 +111,14 @@ function savePassword() {
 // Function to show saved passwords from Firebase
 function showSavedPasswords() {
   const user = firebase.auth().currentUser;
+  const emailId = user.email;
   if (!user) {
     announce('Please sign in to retrieve saved passwords.');
     return;
   }
   
   try {
-    firebase.database().ref('users/' + user.uid + '/savedPasswords').once('value')
+    firebase.database().ref("users/" + emailId.replace('.', ',') + "/savedPasswords").once('value')
       .then(snapshot => {
         const passwords = snapshot.val();
         if (!passwords) {
@@ -149,13 +151,14 @@ function showSavedPasswords() {
 // Function to delete saved password from Firebase
 function deleteSavedPassword(key) {
   const user = firebase.auth().currentUser;
+  const emailId = user.email;
   if (!user) {
     announce('Please sign in to delete saved passwords.');
     return;
   }
   
   try {
-    firebase.database().ref('users/' + user.uid + '/savedPasswords/' + key).remove()
+    firebase.database().ref("users/" + emailId.replace('.', ',') + "/savedPasswords" + key).remove()
       .then(() => {
         announce('Password deleted successfully!');
         showSavedPasswords();

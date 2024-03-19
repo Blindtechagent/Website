@@ -80,8 +80,8 @@ function generateAndDisplayPassword() {
 
 // Function to save password to Firebase
 function savePassword() {
-  const user = firebase.auth().currentUser;
-  const emailId = user.email;
+  let user = firebase.auth().currentUser;
+  let emailId = user.email;
   if (!user) {
     announce('Please sign in to save passwords.');
     return;
@@ -89,7 +89,7 @@ function savePassword() {
   
   const password = r.innerText;
   if (!password) {
-    announce('No password generated to save. please generate password first');
+    announce('No password generated to save, please generate password first.');
     return;
   }
   
@@ -103,19 +103,19 @@ function savePassword() {
     const passwordObj = { title, password };
     firebase.database().ref("users/" + emailId.replace('.', ',') + "/savedPasswords").push(passwordObj);
     announce('Password saved successfully!');
+      if(spc.style.display = "block"){
+      showSavedPasswords();
+  }
   } catch (error) {
     announce('Failed to save password. Please try again.');
-  }
-  if(spc.style.display = "block") {
-      showSavedPasswords();
   }
 }
 
 // Function to show saved passwords from Firebase
 // Function to show saved passwords from Firebase
 function showSavedPasswords() {
-  const user = firebase.auth().currentUser;
-  const emailId = user.email;
+  let user = firebase.auth().currentUser;
+  let emailId = user.email;
   if (!user) {
     announce('Please sign in to retrieve saved passwords.');
     return;
@@ -127,7 +127,6 @@ function showSavedPasswords() {
         const passwords = snapshot.val();
         if (!passwords) {
           announce('No saved passwords found.');
-          spc.style.display = "none";
           return;
         }
         
@@ -137,8 +136,8 @@ function showSavedPasswords() {
           const listItem = document.createElement('li');
           listItem.innerHTML = `<span class="title">${passwordObj.title}</span>
                                 <span class="password textCopy">${passwordObj.password}</span>
-                                <button class="cbtn copyBtn" aria-label="copy"><i class="btn far fa-clipboard"></i></button>
-                                <button class="btn" onclick="deleteSavedPassword('${key}')" aria-label="Delete"><i class="btn fas fa-trash"></i></button>`;
+                                <button class="copyBtn" aria-label="copy"><i class="btn far fa-clipboard"></i></button>
+                                <button onclick="deleteSavedPassword('${key}')" aria-label="Delete"><i class="btn fas fa-trash"></i></button>`;
           spl.appendChild(listItem);
     });
         
@@ -165,6 +164,7 @@ function deleteSavedPassword(key) {
     firebase.database().ref("users/" + emailId.replace('.', ',') + "/savedPasswords/" + key).remove()
       .then(() => {
         announce('Password deleted successfully!');
+        showSavedPasswords();
       })
       .catch(error => {
         announce('Failed to delete password. Please try again.');

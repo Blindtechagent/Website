@@ -138,7 +138,7 @@ function showSavedPasswords() {
         });
         
         spc.style.display = 'block';
-        announce('Saved passwords retrieved successfully!');
+        announce('Saved passwords retrieved successfully!'); 
       })
       .catch(error => {
         announce('Failed to retrieve saved passwords. Please try again.');
@@ -158,7 +158,7 @@ function deleteSavedPassword(key) {
   }
   
   try {
-    firebase.database().ref("users/" + emailId.replace('.', ',') + "/savedPasswords" + key).remove()
+    firebase.database().ref("users/" + emailId.replace('.', ',') + "/savedPasswords/" + key).remove()
       .then(() => {
         announce('Password deleted successfully!');
         showSavedPasswords();
@@ -175,16 +175,3 @@ function deleteSavedPassword(key) {
 g.addEventListener('click', generateAndDisplayPassword);
 s.addEventListener('click', savePassword);
 rt.addEventListener('click', showSavedPasswords);
-
-// Firebase authentication state change listener
-firebase.auth().onAuthStateChanged(user => {
-  if (user) {
-    // User is signed in
-    document.getElementById('non-loggedin-section').style.display = 'none';
-    document.getElementById('loggedin-section').style.display = 'block';
-  } else {
-    // User is signed out
-    document.getElementById('non-loggedin-section').style.display = 'block';
-    document.getElementById('loggedin-section').style.display = 'none';
-  }
-});

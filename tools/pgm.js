@@ -109,6 +109,7 @@ function savePassword() {
 }
 
 // Function to show saved passwords from Firebase
+// Function to show saved passwords from Firebase
 function showSavedPasswords() {
   const user = firebase.auth().currentUser;
   const emailId = user.email;
@@ -135,6 +136,20 @@ function showSavedPasswords() {
                                 <button class="copy copyBtn" aria-label="copy"><i class="btn far fa-clipboard"></i></button>
                                 <button class="delete" onclick="deleteSavedPassword('${key}')" aria-label="Delete"><i class="btn fas fa-trash"></i></button>`;
           spl.appendChild(listItem);
+
+          // Attach event listener to the copy button
+          const copyBtn = listItem.querySelector('.copyBtn');
+          copyBtn.addEventListener('click', function() {
+            const textToCopy = passwordObj.password;
+            navigator.clipboard.writeText(textToCopy)
+              .then(() => {
+                announce('Password copied to clipboard.');
+              })
+              .catch(err => {
+                console.error('Failed to copy password:', err);
+                announce('Failed to copy password to clipboard.');
+              });
+          });
         });
         
         spc.style.display = 'block';
@@ -161,7 +176,6 @@ function deleteSavedPassword(key) {
     firebase.database().ref("users/" + emailId.replace('.', ',') + "/savedPasswords/" + key).remove()
       .then(() => {
         announce('Password deleted successfully!');
-        showSavedPasswords();
       })
       .catch(error => {
         announce('Failed to delete password. Please try again.');
@@ -170,6 +184,7 @@ function deleteSavedPassword(key) {
     announce('Failed to delete password. Please try again.');
   }
 }
+
 
 // Event listeners
 g.addEventListener('click', generateAndDisplayPassword);

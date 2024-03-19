@@ -139,7 +139,6 @@ function showSavedPasswords() {
           spl.appendChild(listItem);
     });
         
-        spc.style.display = 'block';
       })
       .catch(error => {
         announce('Failed to retrieve saved passwords. Please try again.');
@@ -172,6 +171,16 @@ function deleteSavedPassword(key) {
   }
 }
 
+function showHidePswContainer() {
+    if(spc.style.display = 'none') {
+        spc.style.display = 'block';
+        announce("showing saved passwords");
+    }
+    else{
+        spc.style.display = 'block';
+
+announce(" saved passwords hidden");    }
+}
 
 // Event listeners
 g.addEventListener('click', generateAndDisplayPassword);

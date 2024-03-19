@@ -86,13 +86,11 @@ function savePassword() {
     announce('Please sign in to save passwords.');
     return;
   }
-  
   const password = r.innerText;
   if (!password) {
     announce('No password generated to save, please generate password first.');
     return;
   }
-  
   const title = prompt('Enter a title for the password, like: facebook password');
   if (!title) {
     announce('Title cannot be empty. Password not saved.');
@@ -112,7 +110,6 @@ function savePassword() {
 }
 
 // Function to show saved passwords from Firebase
-// Function to show saved passwords from Firebase
 function showSavedPasswords() {
   let user = firebase.auth().currentUser;
   let emailId = user.email;
@@ -127,6 +124,7 @@ function showSavedPasswords() {
         const passwords = snapshot.val();
         if (!passwords) {
           announce('No saved passwords found.');
+          spc.style.display = 'none';
           return;
         }
         

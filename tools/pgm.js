@@ -101,9 +101,7 @@ function savePassword() {
     const passwordObj = { title, password };
     firebase.database().ref("users/" + emailId.replace('.', ',') + "/savedPasswords").push(passwordObj);
     announce('Password saved successfully!');
-      if(spc.style.display = "block"){
       showSavedPasswords();
-  }
   } catch (error) {
     announce('Failed to save password. Please try again.');
   }
@@ -177,7 +175,7 @@ function showHidePswContainer() {
         announce("showing saved passwords");
     }
     else{
-        spc.style.display = 'block';
+        spc.style.display = 'none';
 
 announce(" saved passwords hidden");    }
 }

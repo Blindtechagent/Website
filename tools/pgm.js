@@ -2,7 +2,7 @@
 const r = document.getElementById('result');
 const g = document.getElementById('generate');
 const s = document.getElementById('save');
-const c = document.querySelector('.copyBtn');
+const rc = document.querySelector('.result-container');
 const rt = document.getElementById('retrieve');
 const spl = document.getElementById('savedPasswordsList');
 const spc = document.getElementById('savedPasswordsContainer');
@@ -73,7 +73,7 @@ function generateAndDisplayPassword() {
       const password = generatePassword();
       if (password) {
         r.innerText = password;
-        c.style.display = 'inline-block'; // Show copy button
+        rc.style.display = 'block';
         announce("password generated successfully");
       }
 }
@@ -89,7 +89,7 @@ function savePassword() {
   
   const password = r.innerText;
   if (!password) {
-    announce('No password generated to save.');
+    announce('No password generated to save. please generate password first');
     return;
   }
   
@@ -105,6 +105,9 @@ function savePassword() {
     announce('Password saved successfully!');
   } catch (error) {
     announce('Failed to save password. Please try again.');
+  }
+  if(spc.style.display = "block") {
+      showSavedPasswords();
   }
 }
 
@@ -124,6 +127,7 @@ function showSavedPasswords() {
         const passwords = snapshot.val();
         if (!passwords) {
           announce('No saved passwords found.');
+          spc.style.display = "none";
           return;
         }
         
@@ -133,27 +137,12 @@ function showSavedPasswords() {
           const listItem = document.createElement('li');
           listItem.innerHTML = `<span class="title">${passwordObj.title}</span>
                                 <span class="password textCopy">${passwordObj.password}</span>
-                                <button class="copy copyBtn" aria-label="copy"><i class="btn far fa-clipboard"></i></button>
-                                <button class="delete" onclick="deleteSavedPassword('${key}')" aria-label="Delete"><i class="btn fas fa-trash"></i></button>`;
+                                <button class="cbtn copyBtn" aria-label="copy"><i class="btn far fa-clipboard"></i></button>
+                                <button class="btn" onclick="deleteSavedPassword('${key}')" aria-label="Delete"><i class="btn fas fa-trash"></i></button>`;
           spl.appendChild(listItem);
-
-          // Attach event listener to the copy button
-          const copyBtn = listItem.querySelector('.copyBtn');
-          copyBtn.addEventListener('click', function() {
-            const textToCopy = passwordObj.password;
-            navigator.clipboard.writeText(textToCopy)
-              .then(() => {
-                announce('Password copied to clipboard.');
-              })
-              .catch(err => {
-                console.error('Failed to copy password:', err);
-                announce('Failed to copy password to clipboard.');
-              });
-          });
-        });
+    });
         
         spc.style.display = 'block';
-        announce('Saved passwords retrieved successfully!'); 
       })
       .catch(error => {
         announce('Failed to retrieve saved passwords. Please try again.');

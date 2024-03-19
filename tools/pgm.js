@@ -101,7 +101,9 @@ function savePassword() {
     const passwordObj = { title, password };
     firebase.database().ref("users/" + emailId.replace('.', ',') + "/savedPasswords").push(passwordObj);
     announce('Password saved successfully!');
+      if(spc.style.display = "block"){
       showSavedPasswords();
+  }
   } catch (error) {
     announce('Failed to save password. Please try again.');
   }
@@ -169,12 +171,12 @@ function deleteSavedPassword(key) {
   }
 }
 
-function showHidePswContainer(){
+function showHidePswContainer() {
     if(spc.style.display = 'none') {
         spc.style.display = 'block';
         announce("showing saved passwords");
     }
-    else if(spc.style.display = 'block';){
+    else{
         spc.style.display = 'none';
 
 announce(" saved passwords hidden");    }

@@ -169,12 +169,12 @@ function deleteSavedPassword(key) {
   }
 }
 
-function showHidePswContainer() {
+function showHidePswContainer(){
     if(spc.style.display = 'none') {
         spc.style.display = 'block';
         announce("showing saved passwords");
     }
-    else{
+    else if(spc.style.display = 'block';){
         spc.style.display = 'none';
 
 announce(" saved passwords hidden");    }

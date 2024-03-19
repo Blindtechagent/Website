@@ -172,7 +172,7 @@ function deleteSavedPassword(key) {
 }
 
 function showHidePswContainer() {
-    if(spc.style.display = 'none') {
+    if(spc.style.display === 'none') {
         spc.style.display = 'block';
         announce("showing saved passwords");
     }

@@ -57,8 +57,8 @@
           class="tab w3-yellow">ARTICLES</a>
       </nav>
       <main class="w3-dark-grey" id="main">
-        <h2>Coming soon...</h2>
-        <p>This page is under development</p>
+<h2>Articles</h2>
+<div id="article-list">Loading Articles...</div>
       </main>
 
       <footer class="footer">
@@ -77,7 +77,56 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="./others/firebase.js"></script>
-  <script src="./others/indexGlobal.js"></script>
+  <script src="./others/global.js"></script>
+<script>
+window.addEventListener("load", () => {
+const APIURL = "http://blindtechagent.rf.gd/wp-json/wp/v2/posts";
+let articleElement = document.getElementById("article-list");
+fetch(APIURL).then((response) => {
+if (!response.ok) {
+console.log(response.text());
+throw new Error("Network Error");
+}
+return response.json();
+}).then((articles) => {
+articleElement.innerHTML = "";
+Array.from(articles).forEach((article) => {
+articleElement.innerHTML += `\n<h2><a href="/post.html?slug=${article.slug}">${article.title.rendered}</a></h2>
+<p>Last Updated on ${formatDate(article.modified_gmt)}</p>
+<p>${strip_tags(30, article.content.rendered)}</p>`;
+});
+}).catch((error) => {
+articleElement.innerHTML = "Error while fetching Article's. Please reload the page and try again";
+});
+});
+function formatDate(dtstr) {
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const date = new Date(dtstr);
+if (isNaN(date)) {
+return "Invalid Date";
+}
+const day = date.getDate();
+const month = months[date.getMonth()];
+const year = date.getFullYear();
+let hours = date.getHours();
+const minutes = date.getMinutes();
+const ampm = hours >= 12 ? 'PM' : 'AM';
+hours %= 12;
+hours = hours || 12;
+const formattedDate = `${month} ${day}, ${year} @ ${hours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+return formattedDate;
+}
+function strip_tags(len, content) {
+var tmpDiv = document.createElement("div");
+tmpDiv.innerHTML = content;
+var stripd = tmpDiv.innerText || tmpDiv.textContent || "";
+var words = stripd.split(' ');
+var finalContent = "";
+for (let i = 0; i <= len; i ++) {
+finalContent += " " + words[i];
+}
+return finalContent;
+}
+</script>
 </body>
-
 </html>

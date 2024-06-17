@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (navigator.share) {
             navigator.share({
                 title: article.title,
-                text: `${article.title}\nWritten by: ${article.author}\nPublished on: ${article.date}\nCategory: ${article.category}`,
+                text: `${article.title}`,
                 url: window.location.href
             }).then(() => {
                 announce('Article shared successfully!');

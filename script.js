@@ -131,4 +131,3 @@ $(document).ready(function () {
   }, 3000);
   announcement.style.display = "block";
 }
-

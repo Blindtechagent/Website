@@ -207,12 +207,13 @@ border: 3px solid #F433FF;
     }
 
     .logo {
-      flex: 1;
+      flex: 2;
       display: block;
       margin: auto;
     }
 
     .language-button {
+flex: 3;
       margin: 10px;
       padding: 8px 10px;
       background-color: #00CC00;
@@ -470,27 +471,10 @@ button[onclick="acsDialog()"]:hover {
   background-color: #2E8B57; /* Darker contrast on hover */
   color: white;
 }
-
-/* Adjust only the accessibility button position near the logo */
-.header-container {
-  display: flex;
-  align-items: center;
-}
-
-button[onclick="acsDialog()"] {
-  order: 1;
-  margin-right: 10px;
+.acsBTN {
+  flex: 1;
+  float: left;
   display: inline;
-}
-
-.logo {
-  order: 2;
-  display: block;
-  margin: auto;
-}
-.language-button {
-order: 3;
-margin-left: 10px;
 }
 /* Accessibility Panel Dialog Styles */
 dialog#accessibility-panel {

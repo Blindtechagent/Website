@@ -485,7 +485,10 @@ button[onclick="acsDialog()"] {
 .logo {
   order: 2;
 }
-
+.language-button {
+order: 3;
+margin-left: 10px;
+}
 /* Accessibility Panel Dialog Styles */
 dialog#accessibility-panel {
   background-color: ghostwhite;

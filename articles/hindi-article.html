@@ -130,11 +130,11 @@
             <a role="tab" href="../education.html" target="_self" class="tab">EDUCATION</a>
             <a role="tab" href="../articles.html" aria-label="Selected, Articles" target="_self"
                 class="tab w3-yellow">ARTICLES</a>
-                <a role="tab" href="../games.html" target="_self" class="tab">games</a>  
+            <a role="tab" href="../games.html" target="_self" class="tab">games</a>
         </nav>
         <main id="main">
             <div id="heading-box" tabindex="0">
-                <h1 id="article-title">Article Title</h1>
+                <h1 id="article-title" class="hindi">Article Title</h1>
             </div>
             <div class="article-actions">
                 <button id="share-btn">Share Article</button>
@@ -169,7 +169,18 @@
         src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="./articles.js"></script>
     <script src="./article.js"></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const content = document.querySelector('.hindi');
+            fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=${content}`)
+                .then(response => response.json())
+                .then(data => {
+                    const translated = data[0][0][0];
+                    document.querySelector('.hindi').innerHTML = translated;
+                })
+                .catch(err => console.log(err));
+        });
+    </script>
 </body>
 
 </html>

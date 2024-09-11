@@ -1,29 +1,54 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const params = new URLSearchParams(window.location.search);
-    const articleId = parseInt(params.get('id'), 10);
-    const article = articles.find(a => a.id === articleId);
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleId = urlParams.get('id');
 
-    if (article) {
-        document.getElementById('article-title').textContent = article.title;
-        const audiotext = document.getElementById('article-content');
-        audiotext.innerHTML = `
-            <p><strong>Published on:</strong> ${article.date}</p>
-            <p><strong>Written by:</strong> ${article.author}</p>
-            <p><strong>Category:</strong> ${article.category}</p>
-            <p>${article.content}</p>
-        `;
-    } else {
-        document.getElementById('article-title').textContent = "Article Not Found";
-        document.getElementById('article-content').innerHTML = "<p>The requested article could not be found.</p>";
-    }
+    const articleRef = firebase.database().ref('articles/' + articleId);
+
+    let article; // Define article outside the articleRef.on('value') scope
+
+    articleRef.once('value', (snapshot) => { // Use once to avoid continuous callback triggering
+        article = snapshot.val(); // Assign article inside the callback
+        if (article) {
+            // Set page title
+            document.title = article.title;
+            
+            // Add meta tags
+            addMetaTag('description', article.metaDescription);
+            addMetaTag('keywords', article.metaKeywords);
+            addMetaTag('title', article.metaTitle);
+
+            addOgMetaTag('og:description', article.metaDescription);
+            addOgMetaTag('og:title', article.metaTitle);
+            var url = window.location.href;
+            addOgMetaTag('og:url', url);
+
+            document.getElementById('article-title').textContent = article.title;
+            const audiotext = document.getElementById('article-content');
+            audiotext.innerHTML = `
+                <p><strong>Published on: ${article.publishDate}</strong></p>
+                <p><strong>Written by: ${article.author}</strong></p>
+                <p><strong>Category: ${article.category}</strong></p>
+                <article>${article.content}</article>
+                <span style="margin:16px; padding:8px; background:#C2B280; color:skyblue;"><strong>Views: ${article.viewCount}</strong></span>
+                <span style="margin:16px; padding:8px; background:#C2B280; color:skyblue"><strong>Shares: ${article.shareCount}</strong></span>
+            `;
+
+            // Increment view count after the article is fully loaded
+            incrementViewCount(articleId);
+        } else {
+            document.getElementById('article-title').textContent = "Article Not Found";
+            document.getElementById('article-content').innerHTML = "<p>The requested article could not be found.</p>";
+        }
+    });
 
     document.getElementById('share-btn').addEventListener('click', function () {
-        if (navigator.share) {
+        if (article && navigator.share) {
             navigator.share({
                 title: article.title,
                 text: `${article.title}`,
                 url: window.location.href
             }).then(() => {
+            incrementShareCount(articleId);
                 announce('Article shared successfully!');
             }).catch((error) => {
                 announce('Error sharing article: ' + error);
@@ -52,17 +77,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function playAudio() {
-        if (audio.src) {
+        if (article && audio.src) {
             audio.currentTime = pausedTime;
             audio.play();
             isPlaying = true;
             playbtn.innerHTML = 'Pause Audio';
             announce('audio resumed');
-        } else {
+        } else if (article) {
             announce('Playing audio, please wait...');
             playbtn.innerHTML = 'Loading...';
 
-            const strippedText = stripHTML(article.content);
+            const strippedText = article.title + stripHTML(article.content);
 
             fetch(`${apiURL2}?text=${encodeURIComponent(strippedText)}&lang=en-in`)
                 .then((response) => {
@@ -113,4 +138,39 @@ document.addEventListener('DOMContentLoaded', function () {
         return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
+    function incrementViewCount(articleId) {
+        const articleRef = firebase.database().ref('articles/' + articleId);
+        articleRef.transaction((article) => {
+            if (article) {
+                article.viewCount = (article.viewCount || 0) + 1;
+            }
+            return article;
+        }).catch((error) => {
+            console.error("Error updating view count:", error);
+        });
+    }
+    function incrementShareCount(articleId) {
+        const articleRef = firebase.database().ref('articles/' + articleId);
+        articleRef.transaction((article) => {
+            if (article) {
+                article.shareCount = (article.shareCount || 0) + 1;
+            }
+            return article;
+        }).catch((error) => {
+            console.error("Error updating share count:", error);
+        });
+    }
+
+    function addMetaTag(name, content) {
+        const meta = document.createElement('meta');
+        meta.name = name;
+        meta.content = content;
+        document.head.appendChild(meta);
+    }
+    function addOgMetaTag(property, content) {
+        const meta = document.createElement('meta');
+        meta.property = property;
+        meta.content = content;
+        document.head.appendChild(meta);
+    }
 });

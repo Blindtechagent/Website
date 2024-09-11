@@ -2,55 +2,63 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Contact us</title>
-  <style>
-main{ color:snow; }
-    main div {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .contact-box {
-      border: 1px solid #333;
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 10px;
-      display: block;
-            color: #ffffff;
-            text-align: center;
-    }
-
-    .email-box {
-      background-color: #dd4b39;
-    }
-
-    .telegram-box {
-      background-color: #0088cc;
-    }
-
-    .whatsapp-box {
-      background-color: #25d366;
-    }
-
-    .fa {
-color:snow;
-      display: block;
-      font-size: 44px;
-      margin: 10px auto;
-    }
- .contact-box h2{ color: snow; }
-  </style>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="../style.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/a5db627303.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="../others/loading.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Analyzer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    main h2 {
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 10px;
+      padding: 5px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #word-count,
+    #char-count {
+      margin-right: 10px;
+    }
+
+    #word-count::before,
+    #char-count::before {
+      content: '(';
+    }
+
+    #word-count::after,
+    #char-count::after {
+      content: ')';
+    }
+  </style>
 </head>
 
 <body>
@@ -58,37 +66,37 @@ color:snow;
     <div class="loader"></div>
     <p id="loading-text" tabindex="0" autofocus aria-live="assertive">LOADING</p>
   </div>
-  <div class="body">
+  <div id="body">
     <header>
-      <a class="skip" href="#main" aria-label="Skip to main content"></a>
-<a href="./index.html" class="link">     <h1 id="main-heading">BLIND TECH AGENT</h1></a>
+      <a class="skip" href="#main">Skip to main content</a>
+      <a href="../index.html" class="link">    <h1 id="main-heading">BLIND TECH AGENT</h1></a>
 <button class="menuBtn w3-display-topleft" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="menuItems" aria-haspopup="true" role="menuitembutton">
   <i class="fas fa-bars w3-display-topleft" style="margin:auto;"></i>
 </button>
 <nav>
-  <ul class="drawer w3-sidebar w3-bar-block w3-animate-left" id="menuItems" aria-orientation="vertical" role="navigation">
-   <li>
-     <a id="loginBtn" role="menuitem" href="./login.html" class="menuLinks w3-bar-item">Log in</a>
+ <ul class="drawer w3-sidebar w3-bar-block w3-animate-left" id="menuItems" aria-orientation="vertical" role="navigation">
+ <li>
+ <a id="loginBtn" role="menuitem" href="../menu/login.html" class="menuLinks w3-bar-item">Log in</a>
  </li>
-   <li>
-     <a id="accountBtn" role="menuitem" href="./createAccount.html" class="menuLinks w3-bar-item">Create Account</a>
-   </li>
+ <li>
+ <a id="accountBtn" role="menuitem" href="../menu/createAccount.html" class="menuLinks w3-bar-item">Create Account</a>
+ </li>
           <li>
             <a role="menuitem" href="./menu/joinUs.html" class="menuLinks w3-bar-item">Join our team</a>
           </li>
-   <li>
-     <a role="menuitem" href="./contact.html" class="menuLinks w3-bar-item">Contact us</a>
-   </li>
-   <li>
-     <a role="menuitem" href="./about.html" class="menuLinks w3-bar-item">About us</a>
-   </li>
+ <li>
+ <a role="menuitem" href="../menu/contact.html" class="menuLinks w3-bar-item">Contact us</a>
+ </li>
+ <li>
+ <a role="menuitem" href="../menu/about.html" class="menuLinks w3-bar-item">About us</a>
+ </li>
     <li>
-      <a role="menuitem" href="./donateUs.html" class="menuLinks w3-bar-item">Donate us</a>
+      <a role="menuitem" href="../menu/donateUs.html" class="menuLinks w3-bar-item">Donate us</a>
     </li>
-   <li>
-     <a role="menuitem" href="./privacy_policy.html" class="menuLinks w3-bar-item">Privacy policy</a>
-   </li>
-  </ul>
+ <li>
+ <a role="menuitem" href="../menu/privacy_policy.html" class="menuLinks w3-bar-item">Privacy policy</a>
+ </li>
+ </ul>
 </nav>
 <div class="header-container">
         <img src="https://te.legra.ph/file/1456591743bc08490d50c.jpg" alt="logo of Blind Tech Agent" width="100px" height="100px" class="logo">
@@ -113,33 +121,28 @@ color:snow;
         </div>
     </dialog>
       <p>"Transforming lives with the power of technology."</p>
-          </header>
-          <nav class="w3-bar">
+      </header>
+      <nav class="w3-bar">
         <a role="tab" href="../index.html" target="_self" class="tab">HOME</a>
-        <a role="tab" href="../features.html" target="_self" class="tab">FEATURES </a>
+        <a role="tab" href="../tools.html" target="_self" aria-label="Selected, Features" class="tab w3-yellow">FEATURES </a>
         <a role="tab" href="../education.html" target="_self" class="tab">EDUCATION</a>
         <a role="tab" href="../articles.html" target="_self" class="tab">ARTICLES</a>
         <a role="tab" href="../games.html" target="_self" class="tab">games</a>  
       </nav>
-    <main>
+    <main id="main">
       <div id="heading-box" tabindex="0" role="heading" aria-level="2">
-        <h2>Contact us</h2>
+        <h2>Text Analyzer</h2>
       </div>
-  <div class="contact-box email-box">
-    <i class="far fa-envelope"></i>
-    <h2>Email</h2>
-    <a href="mailto: pawanpianoartist@gmail.com">Mail us</a>
-  </div>
-  <div class="contact-box telegram-box">
-    <i class="fab fa-telegram"></i>
-    <h2>Telegram</h2>
-    <a style="color:snow;" href="https://t.me/pawan_ks" target="_blank">Contact on Telegram</a>
-  </div>
-  <div class="contact-box whatsapp-box">
-    <i class="fab fa-whatsapp"></i>
-    <h2>WhatsApp</h2>
-    <a href="https://wa.me/919315548418" target="_blank">Contact on WhatsApp</a>
-    </div>
+      <p>Welcome to our Text Analyzer tool! With this simple utility, you can easily analyze any text you input. Just type or paste your text into the provided area and click "Analyze Text."</p>
+
+<p>Our Text Analyzer will quickly provide you with useful information, such as the word count and character count of your text. It's a handy tool for writers, students, and anyone who works with text regularly. Give it a try now!</p>
+<textarea id="input" placeholder="Enter your text here..."></textarea>
+      <button onclick="analyze()">Analyze Text</button>
+      <div id="output">
+        <span id="word-count"></span>
+        <span id="char-count"></span>
+      </div>
+      <div id="announcement" role="status" aria-live="assertive"></div>
     </main>
     <footer class="footer">
       <h2>Footer</h2>
@@ -157,6 +160,7 @@ color:snow;
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="../others/firebase.js"></script>
+  <script src="./txtEn.js"></script>
   <script src="../others/global.js"></script>
     <script src="../others/translate.js"></script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

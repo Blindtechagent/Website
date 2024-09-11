@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Summarizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .fileContainer {
+            background-color:blue;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fileContainer label {
+            margin: 10px;
+        }
+
+        #fileInput {
+            margin: 10px auto;
+            display: block;
+            background-color:yellow;
+            color: red;
+        }
+
+        #gntSummary {
+            background-color: darkblue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            display: block;
+            margin: 8px auto;
+        }
+
+        #gntSummary:hover {
+            background-color: navy;
+        }
+
+        .summary {
+            background-color: cornflowerblue;
+            padding: 16px;
+            margin: 10px auto;
+            display: none;
+            border-radius: 8px;
+        }
+
+        #summary {
+            background-color: dodgerblue;
+            padding: 16px;
+            border-radius: 8px;
+            color: aqua;
+            font-weight: 500;
+            font-size: 16pt;
+            margin: 8px auto;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+</head>
+
+<body>
+    <h2>PDF Summarizer</h2>
+    <p>You can summarize long PDFs into a short summary.</p>
+    <div class="fileContainer">
+        <label for="fileInput">Select your PDF file</label>
+        <input type="file" id="fileInput" accept="application/pdf">
+        <button id="gntSummary">Generate Summary</button>
+    </div>
+    <div class="summary"></div>
+    <div id="announcement" role="status" aria-live="assertive"></div>
+    <script src="./pdfSummarizer.js"></script>
+    <script src="../others/global.js"></script>
+</body>
+
+</html>

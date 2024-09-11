@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Text Extractor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+    </style>
+    <!-- Include PDF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+</head>
+<body>
+    <h1>PDF Text Extractor</h1>
+    <input type="file" id="file-input" />
+    <button onclick="extractText()">Extract Text</button>
+    <script>
+        let extractedText = '';
+
+        function extractText() {
+            const fileInput = document.getElementById('file-input');
+            if (fileInput.files.length === 0) {
+                alert('Please select a PDF file.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function() {
+                const typedarray = new Uint8Array(this.result);
+
+                pdfjsLib.getDocument(typedarray).promise.then(pdf => {
+                    let textPromises = [];
+                    for (let i = 1; i <= pdf.numPages; i++) {
+                        textPromises.push(pdf.getPage(i).then(page => page.getTextContent()));
+                    }
+                    return Promise.all(textPromises);
+                }).then(pages => {
+                    extractedText = pages.map(page => page.items.map(item => item.str).join(' ')).join('\n');
+                    // Print the extracted text
+                    alert(extractedText);
+                });
+            };
+            reader.readAsArrayBuffer(file);
+        }
+        alert(extractedText);
+    </script>
+</body>
+</html>

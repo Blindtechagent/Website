@@ -480,10 +480,13 @@ button[onclick="acsDialog()"]:hover {
 button[onclick="acsDialog()"] {
   order: 1;
   margin-right: 10px;
+  display: inline;
 }
 
 .logo {
   order: 2;
+  display: block;
+  margin: auto;
 }
 .language-button {
 order: 3;

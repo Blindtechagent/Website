@@ -526,8 +526,6 @@
     /* Dark Mode Styling for container elements */
     .dark-mode header,
     .dark-mode footer,
-    .dark-mode div,
-    .dark-mode section,
     .dark-mode article,
     .dark-mode nav,
     .dark-mode aside {
@@ -540,6 +538,7 @@
     .dark-mode .content,
     .dark-mode .wrapper,
     .dark-mode .box,
+    .dark-mode section,
     .dark-mode .infobox {
       background-color: #333;
       /* Slightly lighter black for contrast */
@@ -550,7 +549,7 @@
     .dark-mode .card,
     .dark-mode .panel,
     .dark-mode .grid,
-    .dark-mode .section-container {
+    .dark-mode .article {
       background-color: #222;
       /* Different shade for these containers */
       color: white;

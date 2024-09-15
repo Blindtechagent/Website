@@ -523,11 +523,6 @@
       backdrop-filter: blur(500px);
     }
 
-    .dark-mode {
-      background-color: black;
-      color: white;
-    }
-
     /* Dark Mode Styling for container elements */
     .dark-mode header,
     .dark-mode footer,

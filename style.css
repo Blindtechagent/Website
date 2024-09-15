@@ -174,7 +174,7 @@
     }
 
     Nav {
-      display:                                                 flex;
+      display: flex;
       justify-content: space-between;
       background-color: cornflowerblue;
     }
@@ -195,25 +195,24 @@
       color: black;
     }
 
-a {
-  background-color: dodgerblue;
-color: ghostwhite;
-padding: 5px auto;
-border: 3px solid #F433FF;
-}
+    a {
+      background-color: dodgerblue;
+      color: ghostwhite;
+      padding: 5px auto;
+      border: 3px solid #F433FF;
+    }
 
     .header-container {
       position: apsolute;
     }
 
     .logo {
-      flex: 2;
+      flex: 1;
       display: block;
       margin: auto;
     }
 
     .language-button {
-flex: 3;
       margin: 10px;
       padding: 8px 10px;
       background-color: #00CC00;
@@ -225,15 +224,15 @@ flex: 3;
       display: inline;
     }
 
-button {
-background-color: limegreen;  
- color: white;
-font-size: 10px;
-cursor: pointer;
-border-radius: 2px;
-border: 2.5px solidlime;
-padding: 4px auto ;    
-}
+    button {
+      background-color: limegreen;
+      color: white;
+      font-size: 10px;
+      cursor: pointer;
+      border-radius: 2px;
+      border: 2.5px solidlime;
+      padding: 4px auto;
+    }
 
     header p {
       clear: right;
@@ -400,10 +399,11 @@ padding: 4px auto ;
 
     /* this id represent our importent-anounce ment hedding three */
     #information {
-  text-align: center;
-  color: gold;
-  font-weight: bolder;
-}
+      text-align: center;
+      color: gold;
+      font-weight: bolder;
+    }
+
     /* this is our article section */
 
     #articles {
@@ -452,76 +452,135 @@ padding: 4px auto ;
     }
 
     /* Styles for Accessibility Button */
-button[onclick="acsDialog()"] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-left: 20px;
-  background-color: #FF6347; /* High contrast background color (Tomato) */
-  color: white; /* Contrast with button background */
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 3px solid white;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
-}
+    button[onclick="acsDialog()"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-left: 20px;
+      background-color: #FF6347;
+      /* High contrast background color (Tomato) */
+      color: white;
+      /* Contrast with button background */
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 3px solid white;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    }
 
-button[onclick="acsDialog()"]:hover {
-  background-color: #2E8B57; /* Darker contrast on hover */
-  color: white;
-}
-.acsBTN {
-  flex: 1;
-  float: left;
-  display: inline;
-}
-/* Accessibility Panel Dialog Styles */
-dialog#accessibility-panel {
-  background-color: ghostwhite;
-  color: black;
-  border: 5px solid red; /* Thick red border */
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  max-width: 400px;
-  width: 80%;
-  margin: auto;
-}
+    button[onclick="acsDialog()"]:hover {
+      background-color: #2E8B57;
+      /* Darker contrast on hover */
+      color: white;
+    }
 
-dialog#accessibility-panel h2 {
-  color: black;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: center;
-}
+    /* Adjust only the accessibility button position near the logo */
+    .header-container {
+      display: flex;
+      align-items: center;
+    }
 
-dialog#accessibility-panel button {
-  background-color: #FF4500; /* Bright orange button */
-  color: white;
-  padding: 10px 15px;
-  font-size: 14px;
-  border: 2px solid red;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 5px;
-  transition: background-color 0.3s ease-in-out, transform 0.2s;
-}
+    button[onclick="acsDialog()"] {
+      order: 1;
+      margin-right: 10px;
+      background: gold;
+      color: black;
+    }
 
-dialog#accessibility-panel button:hover {
-  background-color: #32CD32; /* Light green on hover */
-  transform: scale(1.1);
-}
+    .logo {
+      order: 2;
+    }
 
-#theme-select, #underline-toggle {
-  margin-bottom: 15px;
-  font-size: 16px;
-  padding: 5px;
-  width: 100%;
-  border-radius: 5px;
-  border: 2px solid black;
-}
+    /* Accessibility Panel Dialog Styles */
+    dialog#accessibility-panel {
+      background-color: ghostwhite;
+      color: black;
+      border: 5px solid red;
+      /* Thick red border */
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      max-width: 400px;
+      width: 80%;
+      margin: auto;
+    }
 
-dialog::backdrop {
-  backdrop-filter: blur(5px);
-}
+    dialog#accessibility-panel h2 {
+      color: black;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    dialog#accessibility-panel button {
+      background-color: #FF4500;
+      /* Bright orange button */
+      color: white;
+      padding: 10px 15px;
+      font-size: 14px;
+      border: 2px solid red;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+      transition: background-color 0.3s ease-in-out, transform 0.2s;
+    }
+
+    dialog#accessibility-panel button:hover {
+      background-color: #32CD32;
+      /* Light green on hover */
+      transform: scale(1.1);
+    }
+
+    #theme-select,
+    #underline-toggle {
+      margin-bottom: 15px;
+      font-size: 16px;
+      padding: 5px;
+      width: 100%;
+      border-radius: 5px;
+      border: 2px solid black;
+    }
+
+    dialog::backdrop {
+      backdrop-filter: blur(5px);
+    }
+
+    .dark-mode {
+      background-color: black;
+      color: white;
+    }
+
+    /* Dark Mode Styling for container elements */
+    .dark-mode header,
+    .dark-mode footer,
+    .dark-mode div,
+    .dark-mode section,
+    .dark-mode article,
+    .dark-mode nav,
+    .dark-mode aside,
+    .dark-mode main {
+      background-color: black;
+      color: white;
+    }
+
+    /* Optional: You can style these specific containers to have more contrast or different shades if necessary */
+    .dark-mode .container,
+    .dark-mode .content,
+    .dark-mode .wrapper,
+    .dark-mode .box,
+    .dark-mode .infobox {
+      background-color: #333;
+      /* Slightly lighter black for contrast */
+      color: white;
+    }
+
+    /* Additional container types if used */
+    .dark-mode .card,
+    .dark-mode .panel,
+    .dark-mode .grid,
+    .dark-mode .section-container {
+      background-color: #222;
+      /* Different shade for these containers */
+      color: white;
+    }

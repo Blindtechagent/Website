@@ -451,31 +451,6 @@
       margin-bottom: 1em;
     }
 
-    /* Styles for Accessibility Button */
-    button[onclick="acsDialog()"] {
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin-left: 20px;
-      background-color: #FF6347;
-      /* High contrast background color (Tomato) */
-      color: white;
-      /* Contrast with button background */
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 3px solid white;
-      cursor: pointer;
-      transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
-    }
-
-    button[onclick="acsDialog()"]:hover {
-      background-color: #2E8B57;
-      /* Darker contrast on hover */
-      color: white;
-    }
-
-    /* Adjust only the accessibility button position near the logo */
     .header-container {
       display: flex;
       align-items: center;
@@ -483,9 +458,11 @@
 
     button[onclick="acsDialog()"] {
       order: 1;
-      margin-right: 10px;
+      margin: 10px;
       background: gold;
       color: black;
+      position: absolute;
+      left: 16px;
     }
 
     .logo {
@@ -543,7 +520,7 @@
     }
 
     dialog::backdrop {
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(500px);
     }
 
     .dark-mode {
@@ -558,8 +535,7 @@
     .dark-mode section,
     .dark-mode article,
     .dark-mode nav,
-    .dark-mode aside,
-    .dark-mode main {
+    .dark-mode aside {
       background-color: black;
       color: white;
     }

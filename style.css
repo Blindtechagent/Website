@@ -1,4 +1,7 @@
-/* styles for preloader */
+.body {
+  display: none;
+}
+
 .preloader {
   position: fixed;
   top: 0;
@@ -6,6 +9,7 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(45deg, #22A7F0, #F433FF);
+  /* Gradient background */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,13 +26,16 @@
   border-bottom-color: #3498DB;
   border-left-color: #E74C3C;
   animation: spin 2s infinite linear;
+  /* Adjust animation duration */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  /* Enhance box shadow */
 }
 
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -37,44 +44,61 @@
 #loading-text {
   text-align: center;
   font-size: 3em;
+  /* Slightly reduce font size */
   color: gold;
   margin-top: 20px;
 }
 
-/* hide body by default */
-.body {
-  display: none;
-}
-
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  scroll-behavior: smooth;
-  background-color: #FFFFFF;
   color: #000;
 }
 
-/* Start styles for header */
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  color: #FF5722;
+}
+
+a {
+  background: orange;
+  color: #03A9F4;
+  padding: 5px 10px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #2196F3;
+  /* Darker blue on hover */
+}
+
 .skip {
   font-size: 0;
 }
 
 .link {
+  background: none;
   display: inline-block;
   text-decoration: none;
 }
 
 header {
   width: 100%;
+  height: fit-content;
   background: #F433FF;
-  color: #FFFFFF;
+  color: #3DFF33;
   display: block;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   padding: 16px;
-  z-index: 500;
 }
 
 #main-heading {
@@ -82,41 +106,40 @@ header {
   font-size: 2rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   text-align: center;
-  color: yellow;
+  color:yellow;
 }
 
-/* Greeting animation */
 .infobox {
   padding: 20px;
   margin: 10px auto;
-  width: 40%;
-  height: 35%;
-  background: #000;
+  width: 70%;
+  height: auto;
+  background: #000; /* Initial background color */
   border: 4px solid #FFF;
   border-radius: 15px;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   animation: changeBackgroundColor 14s linear infinite;
-  font-weight: bolder;
-  color: ghostwhite;
+    font-weight: bolder;
+        color:ghostwhite;
 }
 
 @keyframes changeBackgroundColor {
   0%, 100% {
-    background: #000;
+    background: #000; /* Black */
   }
   25% {
-    background: #FF0000;
+    background: #FF0000; /*Red */
   }
   50% {
-    background: #008000;
+    background: #008000; /* Green */
   }
   75% {
-    background: #0000FF;
-  }
-}
+    background: #0000FF; /* Blue */
 
-/* Navigation styles */
+  }
+        }
+
 .menuBtn {
   background: #4CAF50;
   width: 20px;
@@ -155,48 +178,43 @@ nav ul {
   padding: 10px 15px;
   border-radius: 5px;
   text-align: center;
-  width: 70vw;
+  background-color: #7E57C2;
+  width:70vw;
 }
 
 Nav {
   display: flex;
   justify-content: space-between;
-  background-color: cornflowerblue;
+  background-color: lime;
+  /* Original background color */
 }
 
-.tab {
+nav a {
   background: red;
   color: white;
   margin: 1px;
   text-decoration: none;
   width: 25%;
   text-align: center;
-  border: none;
   padding: 8px auto;
+  border: none;
 }
 
-.tab:hover {
-  background-color: powderblue;
+main {
+  background: powderblue;
   color: black;
+  padding: 20px;
+  text-align: center;
 }
-
-a {
-  background-color: dodgerblue;
-  color: ghostwhite;
-  padding: 5px auto;
-  border: 3px solid #F433FF;
-}
-
 
 #heading-box:focus {
   outline: none;
 }
 
-/* Thought box styles */
 .thoughtBox {
   background: #691F6E;
   padding: 8px;
-  color: white;
+  color:white;
 }
 
 #thought {
@@ -208,16 +226,19 @@ a {
 .thoughtBox button {
   background: gold;
   color: #080808;
-  font-size: 16px;
-  padding: 8px;
+  font-size:16px;
+  padding:8px;
 }
 
-/* Footer */
 footer {
   background-color: #333;
+  position: apslute;
+  bottom: 0;
   color: #fff;
   padding: 30px 0;
 }
+
+.footer-heading {}
 
 .social-icon {
   display: inline;
@@ -231,227 +252,177 @@ footer {
   transform: translateY(-5px);
 }
 
-/* Article section */
-#articles {
-  background: cornflowerblue;
-  border: none;
-  margin: auto;
-  border-radius: 16px;
-  width: 90vw;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1em;
-  justify-content: space-around;
+.youtube {
+  float: left;
+  color: #c4302b;
 }
 
-.article {
-  background-color: ghostwhite;
-  margin: 1em auto;
-  padding: 1em;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  width: 85vw;
-  transition: transform 0.2s;
+.telegram {
+  float: right;
+  color: #0088cc;
 }
 
-.article:hover {
-  transform: scale(1.05);
+.text-center {
+  margin-top: 20px;
 }
 
-.article h2 {
-  margin-bottom: 0.5em;
-  color: tomato;
-}
-
-/* Dark mode styles */
-body.dark-mode {
-  background-color: #121212;
-  color: #E0E0E0;
-}
-
-.dark-mode header {
-  background-color: #1F1F1F;
-  color: #E0E0E0;
-}
-
-.dark-mode #main-heading {
-  color: #BB86FC;
-  text-shadow: none;
-}
-
-.dark-mode .menuBtn {
-  background-color: #333;
-  color: #BB86FC;
-  border-color: #BB86FC;
-}
-
-.dark-mode nav {
-  background-color: #333;
-}
-
-.dark-mode .menuLinks {
-  background-color: #444;
-  color: #BB86FC;
-}
-
-.dark-mode .tab {
-  background-color: #444;
-  color: #BB86FC;
-}
-
-.dark-mode .tab:hover {
-  background-color: #BB86FC;
-  color: black;
-}
-/* Dark mode styles for main content */
-.dark-mode main {
-  background-color: #1C1C1C; /* Dark grey background */
-  color: #E0E0E0; /* Light text */
+#non-loggedin-section {
+  text-align: center;
+  background-color: #f8f8f8;
   padding: 20px;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
-  border: 1px solid #333; /* Slight border for separation */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.dark-mode h2, .dark-mode h3 {
-  color: #FFA500; /* Orange for headers to stand out */
+#non-loggedin-section h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-.dark-mode p {
-  color: #CCCCCC; /* Slightly lighter grey for paragraphs */
+#non-loggedin-section p {
+  font-size: 16px;
+  color: #666;
+  margin: 10px 0;
 }
 
-.dark-mode a {
-  color: #FFA500; /* Orange links */
+#non-loggedin-section a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+#non-loggedin-section a:hover {
   text-decoration: underline;
 }
 
-.dark-mode a:hover {
-  color: #FF4500; /* Darker orange on hover */
+.darkblue {
+  background-color: blue;
+  font-weight: bolder;
+  color: yellow;
 }
 
-.dark-mode .thoughtBox {
-  background-color: #333;
-  color: #BB86FC;
+.yellow {
+  background-color: yellow;
+  color: darkblue;
 }
 
-.dark-mode #thought {
-  color: #BB86FC;
+#articles{
+    background: cornflowerblue;
+    border:none;
+    margin:auto;
+    border-radius: 16px;
+    width: 90vw;
+        display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    justify-content: space-around;
 }
 
-.dark-mode .w3-round {
-  background-color: #333;
-  color: #E0E0E0;
+.article button{
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.article {
+    background-color: ghostwhite;
+    margin: 1em auto;
+    overflow: none;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    width: 85vw;
+    transition: transform 0.2s;
 }
 
-.dark-mode .infobox {
-  background-color: #1F1F1F;
-  color: #E0E0E0;
-  border-color: #BB86FC;
+.article:hover {
+    transform: scale(1.05);
 }
 
-.dark-mode button {
-  background-color: #333;
-  color: #BB86FC;
-  border-color: #BB86FC;
+.article h2 {
+    margin-bottom: 0.5em;
+    color:tomato;
 }
 
-.dark-mode button:hover {
-  background-color: #BB86FC;
-  color: black;
+.article p {
+    margin-bottom: 1em;
 }
 
-.dark-mode footer {
-  background-color: #1F1F1F;
-  color: #E0E0E0;
+.header-container{
+    position: apsolute;
+}
+.logo {
+  flex: 1;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.dark-mode .social-icon {
-  color: #BB86FC;
+.language-button {
+    float: right;
+    margin: 10px;
+    padding: 8px 10px;
+    background-color: #00CC00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline;
+}
+header p{
+    clear:right;
 }
 
-.dark-mode .social-icon:hover {
-  color: #6200EA;
+.language-button:hover {
+    background-color: red;
 }
 
-.dark-mode dialog {
-  background-color: #1F1F1F;
-  color: #BB86FC;
-  border: 2px solid #BB86FC;
+dialog {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    padding: 20px;
+    z-index: 1000;
+    background: #00CC00;
+}
+dialog::backdrop{
+    backdrop-filter: blur(40px) brightness(0.4);
 }
 
-.dark-mode dialog button {
-  background-color: #333;
-  color: #BB86FC;
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:ghostwhite;
 }
 
-.dark-mode dialog button:hover {
-  background-color: #BB86FC;
-  color: black;
+.dialog-content h2 {
+    margin: 0 0 10px;
 }
 
-.dark-mode input, .dark-mode select, .dark-mode textarea {
-  background-color: #333;
-  color: #E0E0E0;
-  border: 1px solid #BB86FC;
+.dialog-content p {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.dark-mode input:focus, .dark-mode select:focus, .dark-mode textarea:focus {
-  border-color: #BB86FC;
+.close-button {
+    padding: 10px 20px;
+    background-color: steelblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-/* Preloader dark mode */
-.dark-mode .preloader {
-  background: linear-gradient(45deg, #1F1F1F, #121212);
+.close-button:hover {
+    background-color: #218838;
 }
 
-.dark-mode .loader {
-  border-top-color: #BB86FC;
-  border-right-color: #6200EA;
-  border-bottom-color: #03DAC5;
-  border-left-color: #CF6679;
-}
-/* Accessibility Panel Dialog in Dark Mode */
-.dark-mode dialog#accessibility-panel {
-  background-color: #2C2C2C; /* Slightly lighter dark background */
-  color: #E0E0E0;
-  border: 2px solid #FFA500; /* Bright border for visibility */
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7); /* Strong shadow for focus */
-}
-
-.dark-mode dialog#accessibility-panel h2 {
-  color: #FFA500; /* Orange heading */
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-.dark-mode dialog#accessibility-panel button {
-  background-color: #444; /* Dark button background */
-  color: #FFA500; /* Orange text */
-  border: 2px solid #FFA500;
-  padding: 10px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.dark-mode dialog#accessibility-panel button:hover {
-  background-color: #FFA500; /* Orange on hover */
-  color: #1C1C1C; /* Text turns dark */
-}
-
-.dark-mode #theme-select, .dark-mode #underline-toggle {
-  background-color: #333;
-  color: #E0E0E0;
-  border: 2px solid #FFA500; /* Orange border for inputs */
-  padding: 10px;
-  border-radius: 5px;
-}
-
-/* Backdrop blur effect */
-dialog::backdrop {
-  backdrop-filter: blur(8px) brightness(0.6); /* Blurs and dims the background */
-  background-color: rgba(0, 0, 0, 0.7); /* Dark backdrop for more focus */
-}

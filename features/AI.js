@@ -43,27 +43,7 @@ function send() {
          }
          tb.scrollTop = tb.scrollHeight;
       };
-      xhttp.open("POST", "https://geminigptai.com/api?prompt=" + `Generate an article on ${user_msg}.
-instructions:
-(Use simple words and simple language So that the article can be understood easily.
-Use the standard format of article with headings, sub headings and lists.
-Make sure that article contains Headings for introduction and conclusion always.
-Don't make the article complex, This should be easily understandable to the readers.
-Explain the content of the article well, it should be detailed And elaborated.
-Don't use high quality words or other words that makes the article AI generated.
-Use a humanly tone in article, so it should not look AI generated, Instead, it should look like it was written entirely by human.
-Generate at least 400 words For the article, you can generate more words but 400 Words is minimum. .
-Format this article in HTML tags which should be fairly organized Under the article tag, But don't use tags that aren't needed.
-Don't insert boiler plate of HTML5 also.
-don't use heading level 1 tag, use heading level 2 or other headings instead.
-break a paragraph of a heading into more than one paragraph tags so that each heading must has two to three paragraphs, It should not be the case that the content of each heading is placed in just one paragraph tag.
-After the article, also provide Relative and Kachi title, relative meta discription and keywords in seperate seperate lines, But not in HTML tags, in normal text .
-Also provide a text that can be share with article's link for promoting, this text should short and attractive that attracts users to read article, But this text should also not look AI generated And don't use high quality words in this also.
-At the end tell how many words available in article.)
-
-Analyse the above instructions carefully and then generate the article.
-Using high quality words or phrases is strictly prohibited.
-To generate the article you must follow the above instructions, It is very much necessary.`, true);
+      xhttp.open("POST", "https://chatgpt.apinepdev.workers.dev/?question=" + user_msg, true);
       xhttp.send();
    }
 }

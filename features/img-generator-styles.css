@@ -47,7 +47,7 @@ h2 {
 
 .img-box {
     background-color: #FFA500;
-    width: 100%;
+    width: 85vw;
     height: fit-content;
     text-align: center;
     display: none;
@@ -55,12 +55,6 @@ h2 {
     overflow: hidden;
     border-radius: 10px;
     padding: 16px;
-}
-
-.img {
-    width: 100vw;
-    aspect-ratio: 1/1;
-object-fit: cover;
 }
 
 .user-prompt {

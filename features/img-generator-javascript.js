@@ -8,7 +8,7 @@ function sendPrompt() {
 }
 
 function generateImage(query) {
-    var apiUrl = 'https://aiimage.hellonepdevs.workers.dev/?prompt=' + encodeURIComponent(query);
+    var apiUrl = 'https://ashbina.onrender.com/gen2?prompt=' + encodeURIComponent(query);
     displayImage(apiUrl);
     document.getElementById('imgBox').style.display = "block";
 }
@@ -16,7 +16,7 @@ function generateImage(query) {
 function displayImage(apiUrl) {
     var imgBox = document.getElementById('imgBox');
     imgBox.innerHTML = `
-    <img class="img" src="${apiUrl}" alt="Generated Image" style="display: block; margin: auto;">
+    <img src="${apiUrl}" alt="Generated Image" style="display: block; margin: auto; width: 100%; height: 40vh;">
 `;
 downloadImage(apiUrl);
     setTimeout(after, 1000);

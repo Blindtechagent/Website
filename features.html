@@ -46,6 +46,10 @@
       justify-content: space-between;
     }
 
+    .content i {
+      border: 2px solid black;
+    }
+
     .featureImg {
       height: auto;
       width: 20%;
@@ -81,7 +85,7 @@
       list-style-type: none;
     }
 
-    p {
+    main p {
       display: block;
       margin-top: 10px;
     }
@@ -131,6 +135,34 @@
         </ul>
       </nav>
       <div class="header-container">
+        <button onclick="acsDialog()" class="acsBTN">Accessibility Pannel</button>
+        <dialog id="accessibility-panel" role="dialog">
+          <h2 tabindex="0">Accessibility Pannel</h2>
+          <label for="theme-select" aria-label="Select theme">Theme:
+            <i class="fas fa-palette" title="Choose theme"></i>
+          </label>
+          <select id="theme-select" aria-label="Select theme">
+            <option value="default">Default Theme</option>
+            <option value="dark">Dark theme</option>
+          </select>
+          <h2>Text Size</h2>
+          <button id="increase-text" aria-label="Increase text size">
+            <i class="fas fa-search-plus" title="Increase text size"></i>
+          </button>
+          <button id="decrease-text" aria-label="Decrease text size">
+            <i class="fas fa-search-minus" title="Decrease text size"></i>
+          </button>
+          <button id="reset-text" aria-label="Reset text size">
+            <i class="fas fa-undo" title="Reset text size"></i>
+          </button>
+          <label for="underline-toggle" aria-label="Toggle underline on links">
+            Underline Links <i class="fas fa-underline" title="Toggle underline on links"></i>
+          </label>
+          <input type="checkbox" id="underline-toggle" aria-label="Toggle underline on links">
+          <br>
+          <button onclick="closeAcsDialog()" class="acsBTN w3-close" aria-label="close dialog box">&times;</button>
+        </dialog>
+
         <img src="https://te.legra.ph/file/1456591743bc08490d50c.jpg" alt="logo of Blind Tech Agent" width="100px"
           height="100px" class="logo">
         <button onclick="openDialog()" class="language-button">Translate page</button>
@@ -207,6 +239,16 @@
             <p>Introducing our Currency Converter tool! Easily convert between different currencies using real-time
               exchange rates. Just enter the amount, select the currencies, and click 'Convert.' Perfect for travel or
               international transactions.</p>
+          </div>
+        </li>
+        <li>
+          <div class="featureBox">
+            <div class="content">
+              <i class="fas fa-file-edit" aria-label="currency converter logo"></i>
+              <a href="./features/document-creator.html" class="featureLink">Document Creator</a>
+            </div>
+            <p>Introducing our Document Creator tool! Effortlessly create various documents by choosing your format and
+              adding your content. It's quick and easy to generate the files you need!</p>
           </div>
         </li>
         <li>
@@ -405,6 +447,7 @@
   <script src="./others/firebase.js"></script>
   <script src="./others/indexGlobal.js"></script>
   <script src="./others/translate.js"></script>
+  <script src="./others/acs-options.js"></script>
   <script type="text/javascript"
     src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 

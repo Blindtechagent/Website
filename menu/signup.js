@@ -2,7 +2,6 @@ const form = document.getElementById('form');
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const showPasswordCheckbox = document.getElementById('show-password');
-const googleSignInButton = document.getElementById('google-sign-in');
 
 // Handle form submission
 form.addEventListener('submit', (e) => {
@@ -24,15 +23,15 @@ form.addEventListener('submit', (e) => {
       firebase.database().ref("users/" + emailId.replace('.', ',')).set({
         name: userName
       })
-      .then(() => {
-        announce('Account created successfully. Please log in with your new account.');
-        window.location.href = 'login.html'; // Redirect to login.html
-      })
-      .catch((error) => {
-        // Handle database save error
-        console.error("Database save error:", error);
-        announce("An error occurred while saving data. Please try again.");
-      });
+        .then(() => {
+          announce('Account created successfully. Please log in with your new account.');
+          window.location.href = 'login.html'; // Redirect to login.html
+        })
+        .catch((error) => {
+          // Handle database save error
+          console.error("Database save error:", error);
+          announce("An error occurred while saving data. Please try again.");
+        });
     })
     .catch((error) => {
       // Handle account creation error
@@ -55,7 +54,7 @@ form.addEventListener('submit', (e) => {
 });
 
 // Show/Hide Password
-showPasswordCheckbox.addEventListener('change', function() {
+showPasswordCheckbox.addEventListener('change', function () {
   if (this.checked) {
     passwordInput.type = 'text';
   } else {

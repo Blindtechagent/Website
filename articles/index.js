@@ -60,10 +60,6 @@ function displayArticle(id, title, author, publishDate, category, viewCount) {
 function viewArticle(id) {
   db.child(id).once('value', (snapshot) => {
     const article = snapshot.val();
-    // Increment the view count and save to the database
-    const newViewCount = (article.viewCount || 0) + 1;
-    db.child(id).update({ viewCount: newViewCount });
-
     // Redirect or load the full article
     window.location.href = `articles/article.html?id=${id}`;
   });

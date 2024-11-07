@@ -75,7 +75,7 @@
     header {
       width: 100vw;
       height: fit-content;
-      background: darkblue;
+      background: darkslateblue;
       color: #3DFF33;
       display: block;
       padding: 16px;
@@ -103,36 +103,21 @@
       border-radius: 15px;
       text-align: center;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      animation: changeBackgroundColor 14s linear infinite;
+      animation: changeBackgroundColor 30s ease-in-out infinite; /* Slower duration and ease-in-out */
       font-weight: bolder;
       color: ghostwhite;
     }
+    .infobox:hover {
+      animation-play-state: paused; /* Pause on hover */
+  }
 
-    @keyframes changeBackgroundColor {
-
-      0%,
-      100% {
-        background: #000;
-        /* Black */
-      }
-
-      25% {
-        background: #FF0000;
-        /*Red */
-      }
-
-      50% {
-        background: #008000;
-        /* Green */
-      }
-
-      75% {
-        background: #0000FF;
-        /* Blue */
-
-      }
-    }
-
+  @keyframes changeBackgroundColor {
+    0%, 100% { background: #000; } /* Black */
+    25% { background: #FF0000; }   /* Red */
+    50% { background: #008000; }   /* Green */
+    75% { background: #0000FF; }   /* Blue */
+}  
+  
     .menuBtn {
       background: #4CAF50;
       width: 20px;
@@ -149,8 +134,8 @@
       position: absolute;
       top: 22px;
       left: 0;
-      background: #64DD17;
-      width: 80%;
+      background: cadetblue;
+      width: 50%;
       border: 2px solid #388E3C;
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -163,18 +148,22 @@
     }
 
     .menuLinks {
-      color: #FFFFFF;
+      color: yellow;
       text-decoration: none;
       margin: 10px auto;
       display: block;
       padding: 10px 15px;
       border-radius: 5px;
       text-align: center;
-      background-color: #7E57C2;
-      width: 70vw;
+      background-color: darkblue;
+      width: 40vw;
     }
 
-    Nav {
+    .menuLinks:hover {
+    background-color: blue;
+    color: white;
+    }
+      Nav {
       display: flex;
       justify-content: space-between;
       background-color: cornflowerblue;
@@ -206,7 +195,7 @@
     .language-button {
       margin: 10px;
       padding: 8px 10px;
-      background-color: #00CC00;
+      background-color: lime;
       color: white;
       border: none;
       border-radius: 5px;
@@ -271,10 +260,11 @@
 
     /* styles for main */
     main {
-      background: powderblue;
+      background: #C5CAE9 ;
       color: black;
       padding: 20px;
       text-align: center;
+    font-weight: 700;
     }
 
     #heading-box:focus {
@@ -491,9 +481,10 @@
 
     /* Buttons */
     .dark-mode button {
-      background-color: #3A3A3A;
+      background-color: lightslategrey;
       /* Dark button */
-      color: #E0E0E0;
+      color: darkblue;
+      font-weight: 700;
       /* Light text */
     }
 

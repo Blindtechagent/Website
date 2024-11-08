@@ -13,7 +13,160 @@
   <script src="../others/loading.js"></script>
   <title>Blind tech agent AI</title>
   <style>
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f2f2f2;
+      padding: 20px;
+      color: #000;
+      text-align: center;
+    }
 
+    /* Hide scrollbar */
+    body::-webkit-scrollbar,
+    .tb::-webkit-scrollbar {
+      display: none;
+    }
+
+    .container {
+      max-width: 90vw;
+      min-width: 80vw;
+      width: 100%;
+      background: #fff;
+      border: 1px solid #d9d9d9;
+      border-radius: 10px;
+      box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.15);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #heading-box h2 {
+      font-size: 1.5em;
+      margin: 0;
+      color: #333;
+    }
+
+    #refreshButton {
+      width: 45px;
+      height: 45px;
+      background-color: #F4D03F;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #refreshButton:hover {
+      background-color: #F0C929;
+    }
+
+    .tb {
+      flex-grow: 1;
+      margin-top: 10px;
+      padding: 10px 0;
+      overflow-y: auto;
+      border-top: 1px solid #c3baba;
+    }
+
+    .msg,
+    .msg1 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+
+    .msg h3,
+    .msg1 h3 {
+      margin: 0;
+      font-size: 0.9em;
+      color: #555;
+      padding: 2px;
+      text-align: right;
+    }
+
+    .msg span,
+    .msg1 span {
+      max-width: 85vw;
+      width: fit-content;
+      padding: 8px 12px;
+      margin-top: 5px;
+      font-size: 0.9em;
+      color: #fff;
+      border-radius: 8px;
+    }
+
+    .msg span {
+      background-color: #F433FF;
+      align-self: flex-end;
+    }
+
+    .msg1 span {
+      background-color: #3DFF33;
+      align-self: flex-start;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #c3baba;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1em;
+    }
+
+    .input-area button {
+      width: 45px;
+      height: 45px;
+      background-color: #F4D03F;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .input-area button:hover {
+      background-color: #F0C929;
+    }
+
+    .btn {
+      padding: 5px 10px;
+      background-color: #6a0dad;
+      color: #fff;
+      font-size: 0.8em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 5px;
+      align-self: flex-start;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #5a0c8a;
+    }
   </style>
 </head>
 
@@ -96,48 +249,49 @@
       <div class="container">
         <div class="head">
           <div class="info">
-            <div id="heading-box" tbindex="0" role="heading" aria-level="2">
+            <div id="heading-box" tabindex="0" role="heading" aria-level="2">
               <h2>Blind Tech Agent AI</h2>
             </div>
           </div>
-          <button id="refreshButton" aria-label="refresh chat"><img
-              src="https://graph.org/file/254b9c2cd8d64b4075eaf.jpg" alt="Refresh"></button>
+          <button id="refreshButton" aria-label="refresh chat">
+            <img src="https://graph.org/file/254b9c2cd8d64b4075eaf.jpg" alt="Refresh">
+          </button>
         </div>
-
-        <div class="container">
-          <div class="msg-container">
-            <span>Hello! I am Blind Tech Agent AI. How can I assist you today?</span>
-          </div>
-
-          <form onsubmit="sendRequest()" autocomplete="off">
-            <input type="text" id="prompt" placeholder="Enter your message here">
-            <button type="submit">Send Prompt</button>
-          </form>
+        <div class="tb" id="tb" role="log" aria-live="polite">
+          <span>Hello! I am Blind Tech Agent AI. How can I assist you today?</span>
+          <!-- Messages will be dynamically added here -->
         </div>
-        <div id="message" class="message" role="alert" aria-live="assertive"></div>
+        <form autocomplete="off" id="form" class="input-area" aria-label="Message input area">
+          <input type="text" id="msg_text" placeholder="Enter message here" required
+            aria-label="Type your message here">
+          <button type="submit" aria-label="send message">
+            <img src="https://graph.org/file/ece316d459296026a5833.jpg" alt="Send">
+          </button>
+        </form>
+      </div>
 
-        <section>
-          <h2>About Blind Tech Agent AI</h2>
-          <p>
-            Discover the power of Blind Tech Agent AI. It's your smart companion for:
-          </p>
-          <ul>
-            <li>Instant answers to your questions</li>
-            <li>Effortless content generation</li>
-            <li>Engaging conversations and insights</li>
-            <li>Multilingual support</li>
-            <li>Natural language understanding</li>
-            <li>and so much more</li>
-          </ul>
-          <p>Please note that messages are generated by AI. While we strive for accuracy, Blind Tech Agent AI may
-            occasionally make mistakes. We are not responsible for the content of these messages.</p>
-          <p>
-            Whether you need assistance, generating content, or just a friendly chat, our AI is here to
-            enhance your experience. Join us in the future of technology!
-          </p>
-        </section>
-        <br><br>
-        <div id="announcement" role="status" aria-live="assertive"></div>
+      <section>
+        <h2>About Blind Tech Agent AI</h2>
+        <p>
+          Discover the power of Blind Tech Agent AI. It's your smart companion for:
+        </p>
+        <ul>
+          <li>Instant answers to your questions</li>
+          <li>Effortless content generation</li>
+          <li>Engaging conversations and insights</li>
+          <li>Multilingual support</li>
+          <li>Natural language understanding</li>
+          <li>and so much more</li>
+        </ul>
+        <p>Please note that messages are generated by AI. While we strive for accuracy, Blind Tech Agent AI may
+          occasionally make mistakes. We are not responsible for the content of these messages.</p>
+        <p>
+          Whether you need assistance, generating content, or just a friendly chat, our AI is here to
+          enhance your experience. Join us in the future of technology!
+        </p>
+      </section>
+      <br><br>
+      <div id="announcement" role="status" aria-live="assertive"></div>
 
     </main>
     <footer class="footer">

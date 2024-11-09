@@ -13,159 +13,310 @@
   <script src="../others/loading.js"></script>
   <title>Blind tech agent AI</title>
   <style>
+    /* General styling for the main container */
     main {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      background: #f2f2f2;
-      padding: 20px;
-      color: #000;
-      text-align: center;
     }
 
-    /* Hide scrollbar */
-    body::-webkit-scrollbar,
-    .tb::-webkit-scrollbar {
-      display: none;
-    }
-
+    /* Main container styling */
     .container {
-      max-width: 90vw;
-      min-width: 80vw;
-      width: 100%;
-      background: #fff;
-      border: 1px solid #d9d9d9;
-      border-radius: 10px;
-      box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.15);
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
+    /* Heading box and header */
     .head {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      margin-bottom: 20px;
     }
 
     #heading-box h2 {
-      font-size: 1.5em;
-      margin: 0;
-      color: #333;
+      font-size: 24px;
+      font-weight: bold;
     }
 
+    /* Refresh button styling */
     #refreshButton {
-      width: 45px;
-      height: 45px;
-      background-color: #F4D03F;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: none;
       border: none;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: transform 0.3s ease;
     }
 
+    #refreshButton img {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Hover effect for refresh button */
     #refreshButton:hover {
-      background-color: #F0C929;
+      transform: rotate(180deg);
+      /* Rotate the button on hover */
     }
 
+    /* Chat box styling */
     .tb {
-      flex-grow: 1;
-      margin-top: 10px;
-      padding: 10px 0;
+      margin-bottom: 20px;
+      max-height: 400px;
       overflow-y: auto;
-      border-top: 1px solid #c3baba;
+      animation: fadeIn 1s ease-in-out;
     }
 
-    .msg,
-    .msg1 {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      margin-top: 10px;
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
-    .msg h3,
-    .msg1 h3 {
-      margin: 0;
-      font-size: 0.9em;
-      color: #555;
-      padding: 2px;
-      text-align: right;
+    /* Message section styling */
+    /* Slide-in animation */
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
 
-    .msg span,
-    .msg1 span {
-      max-width: 85vw;
-      width: fit-content;
-      padding: 8px 12px;
-      margin-top: 5px;
-      font-size: 0.9em;
-      color: #fff;
-      border-radius: 8px;
-    }
-
-    .msg span {
-      background-color: #F433FF;
-      align-self: flex-end;
-    }
-
-    .msg1 span {
-      background-color: #3DFF33;
-      align-self: flex-start;
-    }
-
+    /* Form and input area styling */
     .input-area {
       display: flex;
-      gap: 6px;
-      margin-top: 10px;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      animation: bounceIn 1s ease-out;
+      /* Bounce-in effect for the input area */
     }
 
     .input-area input {
-      flex: 1;
+      flex-grow: 1;
       padding: 10px;
-      border: 1px solid #c3baba;
-      border-radius: 8px;
-      outline: none;
-      font-size: 1em;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      transition: all 0.3s ease;
+      /* Smooth transition for focus effect */
+    }
+
+    .input-area input:focus {
+      border-color: #2196F3;
+      box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+      /* Focus effect */
     }
 
     .input-area button {
-      width: 45px;
-      height: 45px;
-      background-color: #F4D03F;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: background-color 0.3s ease;
-    }
-
-    .input-area button:hover {
-      background-color: #F0C929;
-    }
-
-    .btn {
-      padding: 5px 10px;
-      background-color: #6a0dad;
-      color: #fff;
-      font-size: 0.8em;
+      padding: 10px;
       border: none;
-      border-radius: 4px;
       cursor: pointer;
-      margin-top: 5px;
-      align-self: flex-start;
-      transition: background-color 0.3s ease;
+      transition: transform 0.3s ease;
+      /* Smooth transition for button hover effect */
     }
 
-    .btn:hover {
-      background-color: #5a0c8a;
+    .input-area button i {
+      font-size: 18px;
+    }
+
+    /* Button hover effect */
+    .input-area button:hover {
+      transform: scale(1.1);
+      /* Enlarge button slightly on hover */
+    }
+
+    /* Microphone button styling */
+    .mic-btn {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .mic-btn:hover {
+      background-color: #388E3C;
+      transform: scale(1.1);
+      /* Slight zoom effect on hover */
+    }
+
+    /* Send button styling */
+    .send-btn {
+      background-color: #2196F3;
+      color: #fff;
+      padding: 10px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .send-btn:hover {
+      background-color: #1976D2;
+      transform: scale(1.1);
+    }
+
+    /* Listen button styling */
+    .listen-btn {
+      background-color: cornflowerblue;
+      color: ghostwhite;
+      margin: 10px;
+      float: right;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .listen-btn:hover {
+      background-color: #FF9800;
+      transform: scale(1.1);
+    }
+
+    /* Copy button styling */
+    .copy-btn {
+      background-color: cornflowerblue;
+      color: ghostwhite;
+      margin: 10px;
+      float: right;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      background-color: #757575;
+      transform: scale(1.1);
+    }
+
+    /* Message styling */
+    .msg1,
+    .dfm {
+      background-color: darkorange;
+      color: ghostwhite;
+      float: right;
+      clear: both;
+      display: block;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeInMessage 1s forwards;
+      /* Fade-in animation for messages */
+    }
+
+    .msg {
+      background-color: darkblue;
+      color: snow;
+      float: left;
+      clear: both;
+      display: block;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeInMessage 1s forwards;
+    }
+
+    .sender-user,
+    .sender-ai {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .sender-ai {
+      float: right;
+    }
+
+    .sender-user {
+      float: left;
+    }
+
+    #msg_text {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+
+    /* Fade-in message animation */
+    @keyframes fadeInMessage {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Visually hidden for screen readers */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+      clip: rect(0, 0, 0, 0);
+      clip-path: inset(100%);
+      overflow: hidden;
+    }
+
+    /* Button Flex container for Listen & Copy buttons */
+    .dfmbuttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    /* Head box and footer styling */
+    #heading-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    /* Button Icon styling */
+    button i {
+      font-size: 18px;
+    }
+
+    /* Bounce-in effect for input area */
+    @keyframes bounceIn {
+      0% {
+        transform: translateY(3000px);
+      }
+
+      60% {
+        transform: translateY(-30px);
+      }
+
+      80% {
+        transform: translateY(10px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    main ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      color: #666;
+    }
+
+    main li {
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -249,27 +400,30 @@
       <div class="container">
         <div class="head">
           <div class="info">
-            <div id="heading-box" tabindex="0" role="heading" aria-level="2">
+            <div id="heading-box" tbindex="0" role="heading" aria-level="2">
               <h2>Blind Tech Agent AI</h2>
             </div>
           </div>
-          <button id="refreshButton" aria-label="refresh chat">
-            <img src="https://graph.org/file/254b9c2cd8d64b4075eaf.jpg" alt="Refresh">
-          </button>
+          <button id="refreshButton" aria-label="refresh chat"><img
+              src="https://graph.org/file/254b9c2cd8d64b4075eaf.jpg" alt="Refresh"></button>
         </div>
-        <div class="tb" id="tb" role="log" aria-live="polite">
-          <span>Hello! I am Blind Tech Agent AI. How can I assist you today?</span>
-          <!-- Messages will be dynamically added here -->
+        <div class="tb" id="tb">
+          <div class="dfm">
+            <span>Hello! I am Blind Tech Agent AI. How can I assist you today?</span>
+          </div>
         </div>
-        <form autocomplete="off" id="form" class="input-area" aria-label="Message input area">
-          <input type="text" id="msg_text" placeholder="Enter message here" required
-            aria-label="Type your message here">
-          <button type="submit" aria-label="send message">
-            <img src="https://graph.org/file/ece316d459296026a5833.jpg" alt="Send">
-          </button>
-        </form>
+        <form id="form">
+          <div class="input-area">
+            <input type="text" id="msg_text" placeholder="Enter message here" required>
+            <button type="button" id="micBtn" class="btn mic-btn" aria-label="Start voice input">
+              <i class="fas fa-microphone"></i>
+            </button>
+            <button type="submit" id="sendBtn" class="btn send-btn" aria-label="Send message">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
       </div>
-
+      </form>
       <section>
         <h2>About Blind Tech Agent AI</h2>
         <p>

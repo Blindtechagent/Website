@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  // toggling the navigation drawer
   const accountBtn = document.getElementById("accountBtn");
   const loginBtn = document.getElementById("loginBtn");
   const menuBtn = $('.menuBtn');
@@ -29,25 +28,27 @@ $(document).ready(function () {
     });
   }
 
-  // copy funtionality from any text
   const copyBtn = document.querySelector(".copyBtn");
   if (copyBtn) {
-    copyBtn.addEventListener("click", function () {
-      const textToCopy = document.querySelector(".textCopy").innerText;
-      navigator.clipboard.writeText(textToCopy)
-        .then(() => announce("Text copied successfully!"))
-        .catch((err) => console.error("Copy failed:", err));
+    copyBtn.addEventListener("click", function() {
+      var text = document.querySelector(".textCopy").innerText;
+      var input = document.createElement('textarea');
+      input.value = text;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+      announce("Text copied successfully!");
     });
   }
 
-  // copy funcionality from any edit box
   const copyTextBoxBtn = document.querySelector(".copyTextBoxBtn");
   if (copyTextBoxBtn) {
-    copyTextBoxBtn.addEventListener("click", function () {
-      const textBoxCopy = document.querySelector(".textBoxCopy");
-      navigator.clipboard.writeText(textBoxCopy.value)
-        .then(() => announce("Text copied successfully!"))
-        .catch((err) => console.error("Copy failed:", err));
+    copyTextBoxBtn.addEventListener("click", function() {
+      var textarea = document.querySelector(".textBoxCopy");
+      textarea.select();
+      document.execCommand("copy");
+      announce("Text copied successfully!");
     });
   }
 });
@@ -55,7 +56,7 @@ $(document).ready(function () {
 function announce(message) {
   var announcement = document.getElementById("announcement");
   announcement.textContent = message;
-  setTimeout(function () {
+  setTimeout(function() {
     announcement.style.display = "none";
   }, 3000);
   announcement.style.display = "block";

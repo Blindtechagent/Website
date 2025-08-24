@@ -174,7 +174,7 @@
       color: white;
       margin: 1px;
       text-decoration: none;
-      width: 25%;
+      width: 20%;
       text-align: center;
       padding: 8px auto;
       border: none;
@@ -430,7 +430,7 @@
     }
 
     .dark-mode footer {
-      background-color: #1A1A1A;
+      background-color: #000009;
       /* Dark footer */
       color: #E0E0E0;
       /* Light text */
@@ -481,15 +481,15 @@
 
     /* Buttons */
     .dark-mode button {
-      background-color: lightslategrey;
-      /* Dark button */
-      color: darkblue;
+      background-color: #33CCFF;
+      /* light button */
+      color: #FFFFFF;
       font-weight: 700;
       /* Light text */
     }
 
     .dark-mode button:hover {
-      background-color: #4A4A4A;
+      background-color: #FFA07A;
       /* Lighter on hover */
     }
 
@@ -503,6 +503,10 @@
       text-decoration: underline;
       color: #42A5F5;
       /* Lighter on hover */
+    }
+    .dark-mode main {
+      background-color: #1A1D23;
+    color: #CCCCCC;
     }
 
     /* Infobox */
@@ -536,4 +540,11 @@
       /* Darker announcement background */
       color: #FFD700;
       /* Gold text */
+    }
+    .dark-mode input {
+      background-color: #333333;
+    color: #FFFFFF ;
+    }
+    .dark-mode input:placeholder {
+      color: #CCCCCC ;
     }

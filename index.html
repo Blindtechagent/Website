@@ -67,34 +67,6 @@
         </ul>
       </nav>
       <div class="header-container">
-        <button onclick="acsDialog()" class="acsBTN">Accessibility Pannel</button>
-        <dialog id="accessibility-panel" role="dialog">
-          <h2 tabindex="0">Accessibility Pannel</h2>
-          <label for="theme-select" aria-label="Select theme">Theme:
-            <i class="fas fa-palette" title="Choose theme"></i>
-          </label>
-          <select id="theme-select" aria-label="Select theme">
-            <option value="default">Default Theme</option>
-            <option value="dark">Dark theme</option>
-          </select>
-          <h2>Text Size</h2>
-          <button id="increase-text" aria-label="Increase text size">
-            <i class="fas fa-search-plus" title="Increase text size"></i>
-          </button>
-          <button id="decrease-text" aria-label="Decrease text size">
-            <i class="fas fa-search-minus" title="Decrease text size"></i>
-          </button>
-          <button id="reset-text" aria-label="Reset text size">
-            <i class="fas fa-undo" title="Reset text size"></i>
-          </button>
-          <label for="underline-toggle" aria-label="Toggle underline on links">
-            Underline Links <i class="fas fa-underline" title="Toggle underline on links"></i>
-          </label>
-          <input type="checkbox" id="underline-toggle" aria-label="Toggle underline on links">
-          <br>
-          <button onclick="closeAcsDialog()" class="acsBTN w3-close" aria-label="close dialog box">&times;</button>
-        </dialog>
-
         <img src="https://te.legra.ph/file/1456591743bc08490d50c.jpg" alt="logo of Blind Tech Agent" width="100px"
           height="100px" class="logo">
         <button onclick="openDialog()" class="language-button">Translate page</button>
@@ -130,6 +102,7 @@
       <a role="tab" href="features.html" target="_self" class="tab">FEATURES </a>
       <a role="tab" href="education.html" target="_self" class="tab">EDUCATION</a>
       <a role="tab" href="articles.html" class="tab">ARTICLES</a>
+      <a role="tab" href="./games.html" target="_self" class="tab">Games</a>
     </nav>
 
     <main id="main">
@@ -157,7 +130,24 @@
         </div>
       </section>
       <br>
-      <section class="yellow announcements">
+      <section style="background-color: #ffcc00; color: #2e2e2e; padding: 30px; border-radius: 15px; width: 80%; margin: 20px auto; box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1); font-family: 'Arial', sans-serif;">
+        <h1 style="text-align: center; font-size: 2.5em; margin-bottom: 20px; color: #1a1a1a;">Celebrate World Braille Day with Our New Game: Shootout Challenge!</h1>
+        <p style="font-size: 1.2em; line-height: 1.6; text-align: center; margin-bottom: 20px; color: #333;">Hello from the Blind Tech Agent team! We’re thrilled to announce the launch of our brand-new game, <strong>Shootout Challenge</strong>, on the occasion of World Braille Day. This exciting release reflects our commitment to making fun, inclusive, and accessible games for everyone.</p>
+        
+        <h2 style="font-size: 2em; margin-top: 20px; color: #1a1a1a;">Introduction to Shootout Challenge</h2>
+        <p style="font-size: 1.2em; line-height: 1.6; margin-bottom: 20px; color: #333;">Shootout Challenge is an action-packed shooting game that puts your reflexes to the test. Enemies appear randomly from the left, center, or right, and your mission is to shoot them before they shoot you. Each successful shot earns you a point, and the first to score 10 points wins the game.</p>
+        <p style="font-size: 1.2em; line-height: 1.6; margin-bottom: 20px; color: #333;">As you progress, the game speeds up, making it even more challenging and exciting. With intuitive controls and a focus on fast-paced gameplay, Shootout Challenge is designed to be accessible and enjoyable for everyone. Whether you're a seasoned gamer or just looking for some quick fun, this game is guaranteed to keep you engaged!</p>
+    
+        <h3 style="font-size: 1.8em; color: #1a1a1a;">We’d love to hear from you!</h3>
+        <p style="font-size: 1.2em; line-height: 1.6; margin-bottom: 20px; color: #333;">Share your feedback and let us know how much fun you had. Your suggestions help us improve and create even better experiences for everyone.</p>
+    
+        <h3 style="font-size: 1.8em; color: #1a1a1a;">What are you waiting for?</h3>
+        <p style="font-size: 1.2em; line-height: 1.6; text-align: center; margin-top: 20px; color: #333;">It’s time to take on the Shootout Challenge! Ready to test your skills? <a href="games/shootout.html" target="_blank" style="font-weight: bold; color: #1a1a1a;">Dive into the Shootout Challenge today!</a></p>
+        
+        <p style="font-size: 1.2em; line-height: 1.6; text-align: center; color: #333; margin-top: 20px;">For more details and to access the article, visit <a href="#" target="_blank" style="font-weight: bold; color: #1a1a1a;">this link</a>.</p>
+    </section>
+<br>    
+      <section class="yellow">
         <h2 class="w3-text-purple">Join Us: We're Hiring!</h2>
         <p>At Blind Tech Agent, we are committed to making life easier for everyone, especially visually impaired
           individuals. We're looking for passionate and talented people to join our team. By joining us, you will make
@@ -261,7 +251,6 @@
   <script src="./others/ContactForm.js"></script>
   <script src="./others/translate.js"></script>
   <script src="./script.js"></script>
-  <script src="./others/acs-options.js"></script>
   <script type="text/javascript"
     src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <script src="./quotes.js"></script>

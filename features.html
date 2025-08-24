@@ -135,34 +135,6 @@
         </ul>
       </nav>
       <div class="header-container">
-        <button onclick="acsDialog()" class="acsBTN">Accessibility Pannel</button>
-        <dialog id="accessibility-panel" role="dialog">
-          <h2 tabindex="0">Accessibility Pannel</h2>
-          <label for="theme-select" aria-label="Select theme">Theme:
-            <i class="fas fa-palette" title="Choose theme"></i>
-          </label>
-          <select id="theme-select" aria-label="Select theme">
-            <option value="default">Default Theme</option>
-            <option value="dark">Dark theme</option>
-          </select>
-          <h2>Text Size</h2>
-          <button id="increase-text" aria-label="Increase text size">
-            <i class="fas fa-search-plus" title="Increase text size"></i>
-          </button>
-          <button id="decrease-text" aria-label="Decrease text size">
-            <i class="fas fa-search-minus" title="Decrease text size"></i>
-          </button>
-          <button id="reset-text" aria-label="Reset text size">
-            <i class="fas fa-undo" title="Reset text size"></i>
-          </button>
-          <label for="underline-toggle" aria-label="Toggle underline on links">
-            Underline Links <i class="fas fa-underline" title="Toggle underline on links"></i>
-          </label>
-          <input type="checkbox" id="underline-toggle" aria-label="Toggle underline on links">
-          <br>
-          <button onclick="closeAcsDialog()" class="acsBTN w3-close" aria-label="close dialog box">&times;</button>
-        </dialog>
-
         <img src="https://te.legra.ph/file/1456591743bc08490d50c.jpg" alt="logo of Blind Tech Agent" width="100px"
           height="100px" class="logo">
         <button onclick="openDialog()" class="language-button">Translate page</button>
@@ -193,6 +165,7 @@
       </a>
       <a role="tab" href="education.html" target="_self" class="tab">EDUCATION</a>
       <a role="tab" href="articles.html" target="_self" class="tab">ARTICALS</a>
+      <a role="tab" href="./games.html" target="_self" class="tab">Games</a>
     </nav>
     <main id="main">
       <h2>Features</h2>
@@ -207,6 +180,19 @@
             </div>
             <p>Calculate your age quickly and easily with our Age Calculator. Simply enter your birthdate and get your
               age instantly.</p>
+          </div>
+        </li>
+        <li>
+          <div class="featureBox">
+            <div class="content">
+              <i class="fas fa-brain" aria-label="Blind Tech Agent AI logo"></i>
+              <a href="./features/blindtechagentAI.html" class="featureLink">Blind Tech Agent AI</a>
+            </div>
+            <p>
+              Discover the power of Blind Tech Agent AI – your smart companion for endless possibilities. Instantly get
+              answers, create content, enjoy engaging conversations, and explore multilingual support with natural
+              language understanding. Let Blind Tech Agent AI elevate your experience and simplify your tasks!
+            </p>
           </div>
         </li>
         <li>
@@ -244,25 +230,18 @@
         <li>
           <div class="featureBox">
             <div class="content">
-              <i class="fas fa-file-edit" aria-label="currency converter logo"></i>
+              <i class="fas fa-file-alt" aria-label="Document Creator logo"></i>
               <a href="./features/document-creator.html" class="featureLink">Document Creator</a>
             </div>
-            <p>Introducing our Document Creator tool! Effortlessly create various documents by choosing your format and
-              adding your content. It's quick and easy to generate the files you need!</p>
+            <p>
+              Create professional documents with ease using our Document Creator. Simply name your document, select the
+              format (Word, PDF, or Text), and type or speak your content. Perfect for students, professionals, or
+              anyone needing quick and efficient document generation. Stay organized with live character, word, and line
+              counts!
+            </p>
           </div>
         </li>
-        <li>
-          <div class="featureBox">
-            <div class="content">
-              <i class="fas fa-gamepad" aria-label="games logo"></i>
-              <a href="./features/games.html" class="featureLink">Games</a>
-            </div>
-            <p>Discover our website's games, specially designed for visually impaired individuals. With accessible
-              controls, descriptive narration, and inclusive features, everyone can enjoy an immersive gaming
-              experience. Try it now and embrace the joy of accessible gaming for all.</p>
-          </div>
-        </li>
-        <li>
+<li>
           <div class="featureBox">
             <div class="content">
               <i class="fas fa-camera" aria-label="image to text logo"></i>
@@ -447,7 +426,6 @@
   <script src="./others/firebase.js"></script>
   <script src="./others/indexGlobal.js"></script>
   <script src="./others/translate.js"></script>
-  <script src="./others/acs-options.js"></script>
   <script type="text/javascript"
     src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 

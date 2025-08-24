@@ -120,7 +120,7 @@
         </ul>
       </nav>
       <div class="header-container">
-        <button onclick="acsDialog()" class="acsBTN">Accessibility Pannel</button>
+        <!-- <button onclick="acsDialog()" class="acsBTN">Accessibility Pannel</button>
         <dialog id="accessibility-panel" role="dialog">
           <h2 tabindex="0">Accessibility Pannel</h2>
           <label for="theme-select" aria-label="Select theme">Theme:
@@ -146,7 +146,7 @@
           <input type="checkbox" id="underline-toggle" aria-label="Toggle underline on links">
           <br>
           <button onclick="closeAcsDialog()" class="acsBTN w3-close" aria-label="close dialog box">&times;</button>
-        </dialog>
+        </dialog> -->
 
         <img src="https://te.legra.ph/file/1456591743bc08490d50c.jpg" alt="logo of Blind Tech Agent" width="100px"
           height="100px" class="logo">
@@ -178,7 +178,7 @@
       <a role="tab" href="education.html" target="_self" class="tab">EDUCATION</a>
       <a role="tab" href="articles.html" target="_self" aria-label="Selected, Articles"
         class="tab w3-yellow">ARTICLES</a>
-
+        <a role="tab" href="games.html" target="_self" class="tab">Games</a>
     </nav>
     <main id="main">
       <h2>Articles</h2>
@@ -195,6 +195,7 @@
         <option>Festivals and Occasions</option>
         <option>Gaming</option>
         <option>Hidden details</option>
+        <option>History</option>
         <option>Logic behind</option>
         <option>Politics</option>
         <option>Programming</option>
@@ -204,6 +205,12 @@
         <option>Tech news</option>
         <option>Technology</option>
         <option>Website announcement</option>
+      </select>
+      <label for="sort-by">Sort by</label>
+      <select id="sort-by">
+        <option value="latest" selected>Latest</option>
+        <option value="popular">Popular</option>
+        <option value="oldest">Oldest</option>
       </select>
       <p style="background: black; color: white; font-weight: 900; text-align: center; font-size: 1.5em; padding: 2\4px; width: 40vw; display: block; margin: auto;"
         id="totalArticles"></p>

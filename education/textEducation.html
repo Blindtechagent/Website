@@ -76,9 +76,6 @@
           <li><a id="loginBtn" role="menuitem" href="../menu/login.html" class="menuLinks w3-bar-item">Log in</a></li>
           <li><a id="accountBtn" role="menuitem" href="../menu/createAccount.html" class="menuLinks w3-bar-item">Create Account</a></li>
           <li>
-            <a role="menuitem" href="./text/adminPanel.html" class="menuLinks w3-bar-item">Admin Pannel</a>
-          </li>
-          <li>
             <a role="menuitem" href="./menu/joinUs.html" class="menuLinks w3-bar-item">Join our team</a>
           </li>
           <li><a role="menuitem" href="../menu/contact.html" class="menuLinks w3-bar-item">Contact us</a></li>
@@ -124,8 +121,8 @@
 <p>Dive in and start learning right away.</p>
     <h3>Subjects</h3>
     <p>Please select a subject from the categories below to start learning.</p>
-    <div id="subjects-container"></div>
-
+    <ul id="subjects-container"></ul>
+    </main>
     <footer class="footer">
       <h2>Footer</h2>
       <h3 class="footer-heading">Connect with us</h3>
@@ -172,7 +169,10 @@
                     subjectsContainer.appendChild(subjectItem);
                 });
             } else {
-                subjectsContainer.innerHTML = '<p>No subjects found.</p>';
+                // Show message inside a <li> for valid HTML
+                const noSubjectsItem = document.createElement('li');
+                noSubjectsItem.textContent = 'No subjects found.';
+                subjectsContainer.appendChild(noSubjectsItem);
             }
         });
     </script>

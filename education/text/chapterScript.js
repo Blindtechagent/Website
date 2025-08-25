@@ -27,6 +27,7 @@
           });
         } else {
           prevChapterBtn.disabled = true;
+          prevChapterBtn.ariaDisabled = 'true';
         }
 
         if (currentChapterIndex < chapterKeys.length - 1) {
@@ -36,6 +37,7 @@
           });
         } else {
           nextChapterBtn.disabled = true;
+          nextChapterBtn.ariaDisabled = 'true';
         }
       } else {
         document.getElementById('chapter-name').textContent = 'Chapter not found';

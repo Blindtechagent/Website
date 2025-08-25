@@ -27,7 +27,7 @@
           });
         } else {
           prevChapterBtn.disabled = true;
-          prevChapterBtn.ariaDisabled = 'true';
+          prevChapterBtn.ariaLabel = 'Previous chapter button disabled';
         }
 
         if (currentChapterIndex < chapterKeys.length - 1) {
@@ -37,7 +37,7 @@
           });
         } else {
           nextChapterBtn.disabled = true;
-          nextChapterBtn.ariaDisabled = 'true';
+          nextChapterBtn.ariaLabel = 'Next chapter button disabled';
         }
       } else {
         document.getElementById('chapter-name').textContent = 'Chapter not found';

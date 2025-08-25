@@ -26,9 +26,8 @@
             window.location.href = `chapter.html?subject=${subjectKey}&unit=${unitKey}&chapter=${prevChapterKey}`;
           });
         } else {
-          prevChapterBtn.disabled = true;
-          prevChapterBtn.ariaLabel = 'Previous chapter button disabled';
-        }
+          prevChapterBtn.hidden = true;
+                  }
 
         if (currentChapterIndex < chapterKeys.length - 1) {
           const nextChapterKey = chapterKeys[currentChapterIndex + 1];
@@ -36,9 +35,8 @@
             window.location.href = `chapter.html?subject=${subjectKey}&unit=${unitKey}&chapter=${nextChapterKey}`;
           });
         } else {
-          nextChapterBtn.disabled = true;
-          nextChapterBtn.ariaLabel = 'Next chapter button disabled';
-        }
+          nextChapterBtn.hidden = true;
+                  }
       } else {
         document.getElementById('chapter-name').textContent = 'Chapter not found';
       }
